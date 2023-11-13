@@ -22,12 +22,12 @@ public:
 	}
 
 	std::string ToString() {
-		return "Type: " + TypeToString() + " Lexeme: " + lexeme_ + " Literal: " + LiteralToString() + " Line: " + std::to_string(line_);
+		return "Type: " + TypeToString() + ", Lexeme: " + lexeme_ + ", Literal: " + LiteralToString() + " Line: " + std::to_string(line_);
 	}
 
   // TODO add literal when it is implemented
-  bool operator==(const Token& rhs) {
-    return ((type_ == rhs.type_) && (lexeme_ == rhs.lexeme_)  && (line_ == rhs.line_));
+  bool operator==(Token& rhs) {
+    return ((type_ == rhs.type_) && (lexeme_ == rhs.lexeme_)  && (line_ == rhs.line_)) && (LiteralToString() == rhs.LiteralToString());
   }
 private:
   
@@ -49,6 +49,10 @@ private:
       else if constexpr (std::is_same_v<decltype(val), bool>) {
         // If it's a boolean, convert to "true" or "false"
         return val ? "true" : "false";
+      }
+      else if constexpr (std::is_same_v<decltype(val), nullptr_t>) {
+        // If it's a boolean, convert to "true" or "false"
+        return "Null";
       }
       }, literal_);
 

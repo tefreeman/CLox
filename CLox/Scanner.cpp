@@ -90,6 +90,7 @@ bool Scanner::Match(char expected)
 {
   if (IsAtEnd())
     return false;
+
   if (source_.at(current_) != expected)
     return false;
 
@@ -185,7 +186,10 @@ void Scanner::StringHandler()
   Advance();
 
   // Trim the surrounding quotes
-  std::string value = source_.substr(start_+1, current_ -1);
+  int start = start_ + 1;
+  int len = current_ - start - 1;
+
+  std::string value = source_.substr(start, len);
   AddToken(STRING, value);
 }
 
