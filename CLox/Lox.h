@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <stdexcept>
 #include "Scanner.h"
+#include "Parser.h"
 class Lox
 {
 private:

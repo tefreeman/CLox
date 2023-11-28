@@ -6,9 +6,10 @@
 #include <stdexcept>
 #include "Lox.h"
 #include "Tests.h"
-
+#include "AstPrinter.h"
 
 int main(int argc, char* argv[]) {
+  
     Lox lox = Lox();
 
     if (argc > 2) {
@@ -32,5 +33,6 @@ int main(int argc, char* argv[]) {
     else {
         lox.RunPrompt();
     }
+    
     return 0;
 }

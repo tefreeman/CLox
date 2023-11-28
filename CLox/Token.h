@@ -2,8 +2,8 @@
 #include "LoxTypes.h"
 #include <string>
 #include <variant>
-
-typedef std::variant<double, std::string, bool, nullptr_t> Literal;
+#include <any>
+typedef std::any Literal;
 using namespace lox_types;
 
 class Token
@@ -37,25 +37,7 @@ private:
   }
 
   std::string LiteralToString() {
-    std::visit([](const auto& val) {
-      if constexpr (std::is_same_v<decltype(val), double>) {
-        // If it's a double, convert to string
-        return std::to_string(val);
-      }
-      else if constexpr (std::is_same_v<decltype(val), std::string>) {
-        // If it's a string, no conversion needed
-        return val;
-      }
-      else if constexpr (std::is_same_v<decltype(val), bool>) {
-        // If it's a boolean, convert to "true" or "false"
-        return val ? "true" : "false";
-      }
-      else if constexpr (std::is_same_v<decltype(val), nullptr_t>) {
-        // If it's a boolean, convert to "true" or "false"
-        return "Null";
-      }
-      }, literal_);
-
+    //TODO FIX
     // Return an empty string as a fallback (this should never be reached)
     return "Null";
   }

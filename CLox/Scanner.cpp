@@ -1,6 +1,6 @@
 #include "Scanner.h"
 #include "LoxError.h"
-
+#include <any>
 using namespace lox_types;
 
 void Scanner::ScanToken()
@@ -118,7 +118,7 @@ void Scanner::AddToken(TokenType type)
 void Scanner::AddToken(TokenType type, Literal literal)
 {
   std::string text = source_.substr(start_, current_ - start_);
-  tokens_.push_back(Token(type, text, literal, line_));
+  tokens_.push_back(Token(type, text, std::any(literal), line_));
 }
 
 bool Scanner::IsDigit(char c)
