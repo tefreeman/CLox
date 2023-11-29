@@ -8,18 +8,19 @@ class Assign;
 class Binary;
 class Grouping;
 class Unary;
-class Lit;
+class Literal;
+
+
 class Expr
 {
 public:
   template<typename R>
   class Visitor {
   public:
-    virtual R visit(Assign* expr) = 0;
     virtual R visit(Binary* expr) = 0;
     virtual R visit(Grouping* expr) = 0;
     virtual R visit(Unary* expr) = 0;
-    virtual R visit(Lit* expr) = 0;
+    virtual R visit(Literal* expr) = 0;
   };
     virtual std::any accept(Visitor<std::any>* visitor) = 0;
 };
@@ -73,11 +74,11 @@ public:
 
 };
 
-class Lit : public Expr {
+class Literal : public Expr {
 public:
   std::any value_;
 
-  Lit(std::any value) {
+  Literal(std::any value) {
     value_ = value;
   }
 

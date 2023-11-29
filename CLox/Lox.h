@@ -7,9 +7,12 @@
 #include <stdexcept>
 #include "Scanner.h"
 #include "Parser.h"
+#include "Interpreter.h"
+
 class Lox
 {
 private:
+	Interpreter interpreter_;
 public:
 	bool debug_mode_ = false;
 	void RunFile(const std::string& path);

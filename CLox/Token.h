@@ -3,7 +3,8 @@
 #include <string>
 #include <variant>
 #include <any>
-typedef std::any Literal;
+
+typedef std::any LiteralType;
 using namespace lox_types;
 
 class Token
@@ -11,10 +12,10 @@ class Token
 public:
 	TokenType type_;
 	std::string lexeme_;
-	Literal literal_;
+	LiteralType literal_;
 	int line_;
 
-	Token(TokenType type, std::string lexeme, Literal literal, int line) {
+	Token(TokenType type, std::string lexeme, LiteralType literal, int line) {
 		type_ = type;
 		lexeme_ = lexeme;
 		literal_ = literal;

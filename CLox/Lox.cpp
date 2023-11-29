@@ -9,8 +9,20 @@ void Lox::Run(const std::string& content) {
    
    Parser parser(tokens);
    Expr* expression = parser.parse();
+
+
+
+   if (lox_error::had_error) return;
+   if (lox_error::had_runtime_error) {
+     exit(70);
+   }
+
+   interpreter_.Interpret(expression);
+
+   /*
    AstPrinter* ast = new AstPrinter();
    std::cout << ast->print(expression);
+   */
 
    if (debug_mode_) {
      for (Token token : tokens) {

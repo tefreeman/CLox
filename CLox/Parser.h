@@ -2,7 +2,7 @@
 #include "Token.h"
 #include "Expr.h"
 #include <vector>
-
+#include "LoxError.h"
 using namespace lox_types;
 
 class Parser
@@ -17,8 +17,9 @@ public:
     try {
       return expression();
     }
-    catch (...) {
-      return 0;
+    catch (lox_error::ParseError error) {
+      error.display();
+      return nullptr;
     }
   }
 
@@ -86,11 +87,11 @@ private:
   }
 
   Expr* primary() {
-    if(match(FALSE)) return new Lit(false);
-    if (match(TRUE)) return new Lit(true);
-    if (match(NIL)) return new Lit(nullptr);
+    if(match(FALSE)) return new Literal(false);
+    if (match(TRUE)) return new Literal(true);
+    if (match(NIL)) return new Literal(nullptr);
 
-    if (match(NUMBER, STRING)) return new Lit(previous()->literal_);
+    if (match(NUMBER, STRING)) return new Literal(previous()->literal_);
 
     if (match(LEFT_PAREN)) {
       Expr* expr = expression();
@@ -98,14 +99,14 @@ private:
       return new Grouping(expr);
     }
 
+    throw lox_error::ParseError(peek(), "Expect expression.");
 
   }
 
-  Token* consume(TokenType type, std::string message) {
+  Token* consume(TokenType type, const char* message) {
     if(check(type)) return advance();
 
-    //fix later
-    throw std::invalid_argument(message);
+    throw lox_error::ParseError(peek(), message);
   }
 
   bool match(std::vector<TokenType> types) {

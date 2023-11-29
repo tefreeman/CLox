@@ -23,7 +23,7 @@ private:
   char PeekNext();
   char Peek();
   void AddToken(TokenType type);
-  void AddToken(TokenType type, Literal literal);
+  void AddToken(TokenType type, LiteralType literal);
   bool IsDigit(char c);
   void NumberHandler();
 

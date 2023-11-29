@@ -115,7 +115,7 @@ void Scanner::AddToken(TokenType type)
   AddToken(type, nullptr);
 }
 
-void Scanner::AddToken(TokenType type, Literal literal)
+void Scanner::AddToken(TokenType type, LiteralType literal)
 {
   std::string text = source_.substr(start_, current_ - start_);
   tokens_.push_back(Token(type, text, std::any(literal), line_));

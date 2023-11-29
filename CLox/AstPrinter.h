@@ -77,7 +77,7 @@ private:
 
   public:
   std::string print(Expr* expr) {
-    return std::any_cast<std::string>(expr->accept(this));
+      return std::any_cast<std::string>(expr->accept(this));
   }
 
   std::any visit(Assign* expr) {
@@ -92,7 +92,7 @@ private:
    std::any visit(Unary* expr) {
     return parenthesize(expr->op_->lexeme_, expr->right_);
   }
-   std::any visit(Lit* expr) {
+   std::any visit(Literal* expr) {
      if (expr->value_.has_value() == false) {
       return "nil";
     }
