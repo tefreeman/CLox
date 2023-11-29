@@ -9,7 +9,7 @@ class Binary;
 class Grouping;
 class Unary;
 class Literal;
-
+class Variable;
 
 class Expr
 {
@@ -21,6 +21,15 @@ public:
     virtual R visit(Grouping* expr) = 0;
     virtual R visit(Unary* expr) = 0;
     virtual R visit(Literal* expr) = 0;
+    virtual R visit(Variable* expr) = 0;
+    virtual R visit(Assign* expr) = 0;
+   
+    //virtual R visit(Call* expr) = 0;
+    //virtual R visit(Get* expr) = 0;
+    //virtual R visit(Logical* expr) = 0;
+    //virtual R visit(Set* expr) = 0;
+    //virtual R visit(Super* expr) = 0;
+    //virtual R visit(This* expr) = 0;
   };
     virtual std::any accept(Visitor<std::any>* visitor) = 0;
 };
@@ -86,4 +95,33 @@ public:
     return visitor->visit(this);
   }
 
+};
+
+class Variable : public Expr {
+  public:
+    Token* name_;
+
+    Variable(Token* name) {
+      name_ = name;
+    }
+
+    std::any accept(Visitor<std::any>* visitor) {
+      return visitor->visit(this);
+    }
+
+};
+
+class Assign : public Expr {
+  public:
+    Token* name_;
+    Expr* value_;
+
+    Assign(Token* name, Expr* value) {
+      name_ = name;
+      value_ = value;
+    }
+
+    std::any accept(Visitor<std::any>* visitor) {
+      return visitor->visit(this);
+    }
 };

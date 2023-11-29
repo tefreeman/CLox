@@ -1,204 +1,43 @@
 #pragma once
-#include "Token.h"
-#include "Expr.h"
 #include <vector>
-#include "LoxError.h"
+#include "Token.h"
 #include "Stmt.h"
-using namespace lox_types;
+#include "Expr.h"
+#include "LoxError.h"
+#include "LoxTypes.h"
 
-class Parser
-{
-public: 
+class Parser {
+public:
+  Parser(std::vector<Token> tokens);
 
-  Parser(std::vector<Token> tokens) {
-    tokens_ = tokens;
-  }
-
-  std::vector<Stmt*> parse() {
-
-    std::vector<Stmt*> statements;
-    while (!isAtEnd()) {
-      statements.push_back(statement());
-    }
-    return statements;
-   
-  }
-
+  std::vector<Stmt*> parse();
 
 private:
   std::vector<Token> tokens_;
   int current_ = 0;
 
-
-  Expr* expression() {
-    return equality();
- }
-  
-  Stmt* statement() {
-    if (match(PRINT)) {
-      return PrintStatement();
-    }
-    return ExpressionStatement();
-  }
-
-  Stmt* PrintStatement() {
-    Expr* value = expression();
-    consume(SEMICOLON, "Expect ';' after value.");
-    return new Print(value);
-  }
-
-  Stmt* ExpressionStatement() {
-    Expr* expr = expression();
-    consume(SEMICOLON, "Expect ';' after value.");
-    return new Expression(expr);
-  }
-
-  Expr* equality() {
-    Expr* expr = comparison();
-
-    while (match(BANG_EQUAL, EQUAL_EQUAL)) {
-      Token* op = previous();
-      Expr* right = comparison();
-      expr = new Binary(expr, op, right);
-    }
-
-    return expr;
-  }
-
-  Expr* comparison() {
-    Expr* expr = term();
-
-    while (match(std::vector<TokenType>{GREATER, GREATER_EQUAL, LESS, LESS_EQUAL})) {
-      Token* op = previous();
-      Expr* right = term();
-      expr = new Binary(expr, op, right);
-    }
-
-    return expr;
-  }
-
-  Expr* term() {
-  Expr* expr = factor();
-    while (match(std::vector<TokenType>{MINUS, PLUS})) {
-      Token* op = previous();
-      Expr* right = factor();
-      expr = new Binary(expr, op, right);
-    }
-    return expr;
-  }
-
-  Expr* factor() {
-    Expr* expr = unary();
-
-    while (match(SLASH, STAR)) {
-      Token* op = previous();
-      Expr* right = unary();
-      expr = new Binary(expr, op, right);
-    }
-    return expr;
-  }
-
-  Expr* unary() {
-    if (match(BANG, MINUS)) {
-      Token* op = previous();
-      Expr* right = unary();
-      return new Unary(op, right);
-    }
-    return primary();
-  }
-
-  Expr* primary() {
-    if(match(FALSE)) return new Literal(false);
-    if (match(TRUE)) return new Literal(true);
-    if (match(NIL)) return new Literal(nullptr);
-
-    if (match(NUMBER, STRING)) return new Literal(previous()->literal_);
-
-    if (match(LEFT_PAREN)) {
-      Expr* expr = expression();
-      consume(RIGHT_PAREN, "Expect ')' after expression.");
-      return new Grouping(expr);
-    }
-
-    throw lox_error::ParseError(peek(), "Expect expression.");
-
-  }
-
-  Token* consume(TokenType type, const char* message) {
-    if(check(type)) return advance();
-
-    throw lox_error::ParseError(peek(), message);
-  }
-
-  bool match(std::vector<TokenType> types) {
-    for (const auto& type : types) {
-      if (check(type)) {
-        advance();
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  bool match(TokenType type) {
-      if (check(type)) {
-        advance();
-        return true;
-   }
-    return false;
-  }
-
-  bool match(TokenType type, TokenType type2) {
-    if (check(type) || check(type2)) {
-      advance();
-      return true;
-    }
-    return false;
-  }
-
-  bool check(lox_types::TokenType token_type) {
-    if(isAtEnd()) return false;
-    return peek()->type_ == token_type;
-  }
-
-  void synchronize() {
-    advance();
-
-    while (!isAtEnd()) {
-      if(previous()->type_ == SEMICOLON) return;
-
-      switch (peek()->type_) {
-        case CLASS:
-        case FUN:
-        case VAR:
-        case FOR:
-        case IF:
-        case WHILE:
-        case PRINT:
-        case RETURN:
-          return;
-      }
-      advance();
-    }
-  }
-  Token* advance() {
-    if (!isAtEnd()) {
-      current_++;
-    }
-    return previous();
-  }
-
-  bool isAtEnd() {
-    return peek()->type_ == END_OF_FILE;
-  }
-
-  Token* peek() {
-    return &tokens_.at(current_);
-  }
-
-  Token* previous() {
-    return &tokens_.at(current_-1);
-  }
+  Stmt* declaration();
+  Stmt* varDeclaration();
+  Expr* expression();
+  Stmt* statement();
+  Stmt* PrintStatement();
+  Stmt* ExpressionStatement();
+  Expr* equality();
+  Expr* comparison();
+  Expr* term();
+  Expr* factor();
+  Expr* unary();
+  Expr* primary();
+  Expr* assignment();
+  std::vector<Stmt*> block();
+  Token* consume(lox_types::TokenType type, const char* message);
+  bool match(std::vector<lox_types::TokenType> types);
+  bool match(lox_types::TokenType type);
+  bool match(lox_types::TokenType type, lox_types::TokenType type2);
+  bool check(lox_types::TokenType token_type);
+  void synchronize();
+  Token* advance();
+  bool isAtEnd();
+  Token* peek();
+  Token* previous();
 };
-

@@ -137,14 +137,14 @@ void Scanner::NumberHandler()
     while (IsDigit(Peek())) Advance();
   }
 
-  AddToken(NUMBER, std::stod(source_.substr(start_, current_)));
+  AddToken(NUMBER, std::stod(source_.substr(start_, current_ - start_)));
 }
 
 void Scanner::Identifier()
 {
   while (IsAlphaNumeric(Peek())) Advance();
 
-  std::string text = source_.substr(start_, current_);
+  std::string text = source_.substr(start_, current_ - start_);
   auto type_iter = reserved_keyword_map.find(text);
 
   TokenType type;

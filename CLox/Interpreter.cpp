@@ -74,6 +74,22 @@ void Interpreter::execute(Stmt* stmt)
 {
   stmt->accept(this);
 }
+void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment env)
+{
+  Environment prev = environment_;
+
+  // TODO check if this works (microsoft error handling)
+  try {
+    environment_ = env;
+
+    for (Stmt* statement : statements) {
+      execute(statement);
+    }
+  }
+  catch (...) {
+    environment_ = prev;
+  }
+}
 Interpreter::Interpreter()
 {
 
@@ -157,6 +173,18 @@ std::any Interpreter::visit(Binary* expr)
   return nullptr;
 }
 
+std::any Interpreter::visit(Variable* expr)
+{
+  return environment_.get(expr->name_);
+}
+
+std::any Interpreter::visit(Assign* expr)
+{
+  std::any value = evaluate(expr->value_);
+  environment_.assign(expr->name_, value);
+  return value;
+}
+
 void Interpreter::visit(Expression* exprStmt)
 {
   evaluate(exprStmt->expression_);
@@ -166,7 +194,25 @@ void Interpreter::visit(Expression* exprStmt)
 void Interpreter::visit(Print* stmt)
 {
   std::any value = evaluate(stmt->expression_);
-  std::cout << Stringify(value);
+  std::cout << Stringify(value) << std::endl;
+  return;
+}
+
+void Interpreter::visit(Var* stmt)
+{
+  std::any value = nullptr;
+
+  if (stmt->initalizer_ != nullptr) {
+    value = evaluate(stmt->initalizer_);
+  }
+
+  environment_.define(stmt->name_->lexeme_, value);
+  return;
+}
+
+void Interpreter::visit(Block* stmt)
+{
+  executeBlock(stmt->statements_, new Environment(environment_));
   return;
 }
 
