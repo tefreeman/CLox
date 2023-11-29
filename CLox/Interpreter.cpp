@@ -70,15 +70,20 @@ std::string Interpreter::Stringify(std::any value)
   
   return "INVALID std::any value in Interpreter::stringify";
 }
+void Interpreter::execute(Stmt* stmt)
+{
+  stmt->accept(this);
+}
 Interpreter::Interpreter()
 {
+
 }
-void Interpreter::Interpret(Expr* expression)
+void Interpreter::Interpret(std::vector<Stmt*> statements)
 {
   try {
-    std::any value = evaluate(expression);
-    std::cout << Stringify(value);
-
+    for (Stmt* statement : statements) {
+      execute(statement);
+    }
   }
   catch (lox_error::RunTimeError error) {
     error.display();
@@ -142,7 +147,7 @@ std::any Interpreter::visit(Binary* expr)
         return std::any_cast<double>(left) <= std::any_cast<double>(right);
 
       case BANG_EQUAL:
-        return !IsEqual(left, right);
+        return !(IsEqual(left, right));
       case EQUAL_EQUAL:
         return IsEqual(left, right);
 
@@ -151,3 +156,17 @@ std::any Interpreter::visit(Binary* expr)
 
   return nullptr;
 }
+
+void Interpreter::visit(Expression* exprStmt)
+{
+  evaluate(exprStmt->expression_);
+  return;
+}
+
+void Interpreter::visit(Print* stmt)
+{
+  std::any value = evaluate(stmt->expression_);
+  std::cout << Stringify(value);
+  return;
+}
+

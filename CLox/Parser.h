@@ -3,6 +3,7 @@
 #include "Expr.h"
 #include <vector>
 #include "LoxError.h"
+#include "Stmt.h"
 using namespace lox_types;
 
 class Parser
@@ -13,15 +14,16 @@ public:
     tokens_ = tokens;
   }
 
-  Expr* parse() {
-    try {
-      return expression();
+  std::vector<Stmt*> parse() {
+
+    std::vector<Stmt*> statements;
+    while (!isAtEnd()) {
+      statements.push_back(statement());
     }
-    catch (lox_error::ParseError error) {
-      error.display();
-      return nullptr;
-    }
+    return statements;
+   
   }
+
 
 private:
   std::vector<Token> tokens_;
@@ -31,6 +33,25 @@ private:
   Expr* expression() {
     return equality();
  }
+  
+  Stmt* statement() {
+    if (match(PRINT)) {
+      return PrintStatement();
+    }
+    return ExpressionStatement();
+  }
+
+  Stmt* PrintStatement() {
+    Expr* value = expression();
+    consume(SEMICOLON, "Expect ';' after value.");
+    return new Print(value);
+  }
+
+  Stmt* ExpressionStatement() {
+    Expr* expr = expression();
+    consume(SEMICOLON, "Expect ';' after value.");
+    return new Expression(expr);
+  }
 
   Expr* equality() {
     Expr* expr = comparison();
@@ -169,7 +190,7 @@ private:
   }
 
   bool isAtEnd() {
-    return peek()->type_ == EOF;
+    return peek()->type_ == END_OF_FILE;
   }
 
   Token* peek() {

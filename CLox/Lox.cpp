@@ -2,13 +2,14 @@
 #include "Parser.h"
 #include "Expr.h"
 #include "AstPrinter.h"
+#include "Stmt.h"
 
 void Lox::Run(const std::string& content) {
    Scanner scanner(content);
    std::vector<Token> tokens = scanner.ScanTokens();
    
    Parser parser(tokens);
-   Expr* expression = parser.parse();
+   std::vector<Stmt*> statements = parser.parse();
 
 
 
@@ -17,7 +18,7 @@ void Lox::Run(const std::string& content) {
      exit(70);
    }
 
-   interpreter_.Interpret(expression);
+   interpreter_.Interpret(statements);
 
    /*
    AstPrinter* ast = new AstPrinter();
