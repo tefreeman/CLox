@@ -95,5 +95,19 @@ namespace lox_error
 
   };
 
+  class ReturnException : public std::exception {
+  
+  public:
+    std::any value_;
+    inline ReturnException(std::any& value, const char* message) : std::exception(message) {
+    value_ = value;
+    }
+
+
+    const char* what() const throw () {
+      return "ReturnException";
+    }
+  };
+
 };
 
