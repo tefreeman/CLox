@@ -132,6 +132,8 @@
     <ClCompile Include="Expr.cpp" />
     <ClCompile Include="Interpreter.cpp" />
     <ClCompile Include="Lox.cpp" />
+    <ClCompile Include="LoxCallable.cpp" />
+    <ClCompile Include="LoxFunction.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Scanner.cpp" />
@@ -140,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="AstPrinter.h" />
     <ClInclude Include="Environment.h" />
+    <ClInclude Include="EnvironmentManager.h" />
     <ClInclude Include="Expr.h" />
     <ClInclude Include="Interpreter.h" />
     <ClInclude Include="LoxCallable.h" />

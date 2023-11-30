@@ -3,6 +3,7 @@
 #include"LoxError.h"
 #include "LoxCallable.h"
 #include "LoxFunction.h"
+#include "EnvironmentManager.h"
 using namespace lox_types;
 
 std::any Interpreter::evaluate(Expr* expr)
@@ -78,19 +79,15 @@ void Interpreter::execute(Stmt* stmt)
 }
 void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment* env)
 {
-  Environment* prev = environment_;
+  EnvironmentManager envManager(environment_, env);
 
   // TODO check if this works (microsoft error handling)
-  try {
     environment_ = env;
 
     for (Stmt* statement : statements) {
       execute(statement);
     }
-  }
-  catch (...) {
-    environment_ = prev;
-  }
+
 }
 Interpreter::Interpreter()
 {
@@ -277,8 +274,19 @@ void Interpreter::visit(While* stmt)
 
 void Interpreter::visit(Function* stmt)
 {
-  LoxFunction* function = new LoxFunction(stmt);
+  LoxFunction* function = new LoxFunction(stmt, environment_);
   environment_->define(stmt->name_->lexeme_, function);
   return;
+}
+
+void Interpreter::visit(Return* stmt)
+{
+  std::any value = nullptr;
+
+  if (stmt->value_ != nullptr) {
+    value = evaluate(stmt->value_);
+  }
+
+  throw lox_error::ReturnException(value, "ReturnException");
 }
 

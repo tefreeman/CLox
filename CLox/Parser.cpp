@@ -60,6 +60,7 @@ Parser::Parser(std::vector<Token> tokens) {
     if (match(IF)) return IfStatement();
     if(match(WHILE)) return WhileStatement();
     if(match(FOR)) return ForStatement();
+    if(match(RETURN)) return ReturnStatement();
     if (match(PRINT)) return PrintStatement();
     
     if (match(LEFT_BRACE)) {
@@ -96,6 +97,20 @@ Parser::Parser(std::vector<Token> tokens) {
     std::vector<Stmt*> body = block();
 
     return new Function(name, parameters, body);
+  }
+
+  Stmt* Parser::ReturnStatement()
+  {
+    Token* keyword = previous();
+    Expr* value = nullptr;
+
+    if (!check(SEMICOLON)) {
+      value = expression();
+    }
+
+    consume(SEMICOLON, "Expect ';' after return value.");
+    
+    return new Return(keyword, value);
   }
 
   Stmt* Parser::IfStatement()

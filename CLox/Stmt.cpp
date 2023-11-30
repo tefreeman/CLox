@@ -3,6 +3,7 @@
 #pragma once
 #include <any>
 #include "expr.h"
+
 class Block;
 class Class;
 class Expression;
@@ -12,7 +13,7 @@ class Print;
 class Return;
 class Var;
 class While;
-
+class Return;
 
 
 
@@ -82,6 +83,18 @@ class While;
   }
 
   void Function::accept(Visitor<void>* visitor)
+  {
+    return visitor->visit(this);
+  }
+
+
+  Return::Return(Token* keyword, Expr* value)
+  {
+    keyword_ = keyword;
+    value_ = value;
+  }
+
+  void Return::accept(Visitor<void>* visitor)
   {
     return visitor->visit(this);
   }

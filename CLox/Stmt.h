@@ -11,8 +11,10 @@ class Return;
 class Var;
 class While;
 class Function;
-
+class Return;
 class Stmt
+
+
 {
 public:
   template<typename R>
@@ -24,7 +26,7 @@ public:
     virtual R visit(Function* expr) = 0;
     virtual R visit(If* expr) = 0;
     virtual R visit(Print* expr) = 0;
-    //virtual R visit(Return* expr) = 0;
+    virtual R visit(Return* expr) = 0;
     virtual R visit(Var* expr) = 0;
     virtual R visit(While* expr) = 0;
   };
@@ -96,6 +98,17 @@ public:
   std::vector<Stmt*> body_;
 
   Function(Token* name, std::vector<Token*> params, std::vector<Stmt*> body);
+
+  void accept(Visitor<void>* visitor);
+
+};
+
+class Return : public Stmt {
+public:
+  Token* keyword_;
+  Expr* value_;
+
+  Return(Token* keyword, Expr* value);
 
   void accept(Visitor<void>* visitor);
 

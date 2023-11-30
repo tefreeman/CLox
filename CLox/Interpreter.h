@@ -29,6 +29,8 @@ public:
   std::any visit(Assign*);
   std::any visit(Logical*);
   std::any visit(CallExpr*);
+
+
   // Stmt Visitor
   void visit(Expression*);
   void visit(Print*);
@@ -37,5 +39,6 @@ public:
   void visit(If*);
   void visit(While*);
   void visit(Function*);
+  void visit(Return*);
 };
 

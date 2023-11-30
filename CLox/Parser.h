@@ -21,6 +21,7 @@ private:
   Expr* expression();
   Stmt* statement();
   Function* function(std::string kind);
+  Stmt* ReturnStatement();
   Stmt* IfStatement();
   Stmt* PrintStatement();
   Stmt* WhileStatement();
