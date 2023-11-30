@@ -10,6 +10,7 @@ class Print;
 class Return;
 class Var;
 class While;
+class Function;
 
 class Stmt
 {
@@ -20,7 +21,7 @@ public:
     virtual R visit(Block*) = 0;
     //virtual R visit(Class* expr) = 0;
     virtual R visit(Expression* expr) = 0;
-    //virtual R visit(Function* expr) = 0;
+    virtual R visit(Function* expr) = 0;
     virtual R visit(If* expr) = 0;
     virtual R visit(Print* expr) = 0;
     //virtual R visit(Return* expr) = 0;
@@ -84,6 +85,18 @@ public:
 
   While(Expr* condition, Stmt* body);
   
+  void accept(Visitor<void>* visitor);
+
+};
+
+class Function : public Stmt {
+public:
+  Token* name_;
+  std::vector<Token*> params_;
+  std::vector<Stmt*> body_;
+
+  Function(Token* name, std::vector<Token*> params, std::vector<Stmt*> body);
+
   void accept(Visitor<void>* visitor);
 
 };

@@ -77,5 +77,11 @@
     <ClInclude Include="Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LoxCallable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoxFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

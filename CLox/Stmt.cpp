@@ -72,3 +72,16 @@ class While;
   void While::accept(Visitor<void>* visitor) {
     return visitor->visit(this);
   }
+
+
+  Function::Function(Token* name, std::vector<Token*> params, std::vector<Stmt*> body)
+  {
+  name_ = name;
+  params_ = params;
+  body_ = body;
+  }
+
+  void Function::accept(Visitor<void>* visitor)
+  {
+    return visitor->visit(this);
+  }

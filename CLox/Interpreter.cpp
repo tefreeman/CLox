@@ -1,6 +1,8 @@
 #include "Interpreter.h"
 #include "LoxTypes.h"
 #include"LoxError.h"
+#include "LoxCallable.h"
+#include "LoxFunction.h"
 using namespace lox_types;
 
 std::any Interpreter::evaluate(Expr* expr)
@@ -74,9 +76,9 @@ void Interpreter::execute(Stmt* stmt)
 {
   stmt->accept(this);
 }
-void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment env)
+void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment* env)
 {
-  Environment prev = environment_;
+  Environment* prev = environment_;
 
   // TODO check if this works (microsoft error handling)
   try {
@@ -92,7 +94,7 @@ void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment env)
 }
 Interpreter::Interpreter()
 {
-
+  globals_->define("clock", new LoxCallableClock());
 }
 void Interpreter::Interpret(std::vector<Stmt*> statements)
 {
@@ -175,13 +177,13 @@ std::any Interpreter::visit(Binary* expr)
 
 std::any Interpreter::visit(Variable* expr)
 {
-  return environment_.get(expr->name_);
+  return environment_->get(expr->name_);
 }
 
 std::any Interpreter::visit(Assign* expr)
 {
   std::any value = evaluate(expr->value_);
-  environment_.assign(expr->name_, value);
+  environment_->assign(expr->name_, value);
   return value;
 }
 
@@ -197,6 +199,30 @@ std::any Interpreter::visit(Logical* expr)
   }
 
   return evaluate(expr->right_);
+}
+
+std::any Interpreter::visit(CallExpr* expr)
+{
+  std::any callee = evaluate(expr->callee_);
+
+  std::vector<std::any> arguments;
+
+  for (Expr* argument : expr->arguments_) {
+    arguments.push_back(evaluate(argument));
+  }
+
+  LoxFunction* function = std::any_cast<LoxFunction*>(callee);
+
+  // TODO verify it works
+  if (function == nullptr) {
+    throw  lox_error::RunTimeError(expr->paren_, "Can only call functions and classes.");
+  }
+
+  if (arguments.size() != function->arity()) {
+    std::string msg = "Expected " + std::to_string(function->arity()) + " arguments but got " + std::to_string(arguments.size()) + ".";
+    throw lox_error::RunTimeError(expr->paren_, msg.c_str());
+  }
+  return function->Call(this, arguments);
 }
 
 void Interpreter::visit(Expression* exprStmt)
@@ -220,7 +246,7 @@ void Interpreter::visit(Var* stmt)
     value = evaluate(stmt->initalizer_);
   }
 
-  environment_.define(stmt->name_->lexeme_, value);
+  environment_->define(stmt->name_->lexeme_, value);
   return;
 }
 
@@ -246,6 +272,13 @@ void Interpreter::visit(While* stmt)
   while (IsTruthy(evaluate(stmt->condition_))) {
     execute(stmt->body_);
   }
+  return;
+}
+
+void Interpreter::visit(Function* stmt)
+{
+  LoxFunction* function = new LoxFunction(stmt);
+  environment_->define(stmt->name_->lexeme_, function);
   return;
 }
 

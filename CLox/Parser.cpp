@@ -26,6 +26,7 @@ Parser::Parser(std::vector<Token> tokens) {
 
   Stmt* Parser::declaration() {
     try {
+      if (match(FUN)) return function("function");
       if (match(VAR)) return varDeclaration();
 
       return statement();
@@ -65,6 +66,36 @@ Parser::Parser(std::vector<Token> tokens) {
       return new Block(block());
     }
     return ExpressionStatement();
+  }
+
+  Function* Parser::function(std::string kind)
+  {
+    std::string expectName = "Expect " + kind + " name.";
+    Token* name = consume(IDENTIFIER, expectName.c_str());
+
+    std::string expectLeftParen = "Expect '(' after " + kind + " name.";
+    consume(LEFT_PAREN, expectLeftParen.c_str());
+    
+   std::vector<Token*> parameters;
+
+    if (!check(RIGHT_PAREN)) {
+      do {
+        if (parameters.size() >= 255) {
+          throw lox_error::RunTimeError(peek(), "Can't have more than 255 parameters.");
+        }
+
+        parameters.push_back(
+          consume(IDENTIFIER, "Expect parameter name."));
+      } while (match(COMMA));
+    }
+    consume(RIGHT_PAREN, "Expect ')' after parameters.");
+
+    std::string expectRightBrace = "Expect '{' before " + kind + " body.";
+    consume(LEFT_BRACE, expectRightBrace.c_str());
+
+    std::vector<Stmt*> body = block();
+
+    return new Function(name, parameters, body);
   }
 
   Stmt* Parser::IfStatement()
@@ -205,7 +236,40 @@ Parser::Parser(std::vector<Token> tokens) {
       Expr* right = unary();
       return new Unary(op, right);
     }
-    return primary();
+    return Call();
+  }
+
+  Expr* Parser::Call()
+  {
+    Expr* expr = primary();
+
+    while (true) {
+      if (match(LEFT_PAREN)) {
+        expr = FinishCall(expr);
+      }
+      else {
+        break;
+      }
+    }
+
+    return expr;
+  }
+
+  Expr* Parser::FinishCall(Expr* callee)
+  {
+    std::vector<Expr*> arguments;
+    if (!check(RIGHT_PAREN)) {
+      do {
+        if (arguments.size() >= 255) {
+          throw lox_error::RunTimeError(peek(), "Can't have more than 255 arguments.");
+        }
+        arguments.push_back(expression());
+      } while (match(COMMA));
+    }
+
+    Token* paren = consume(RIGHT_PAREN, "Expect ')' after arguments.");
+
+    return new CallExpr(callee, paren, arguments);
   }
 
   Expr* Parser::primary() {

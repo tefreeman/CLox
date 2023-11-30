@@ -20,6 +20,7 @@ private:
   Stmt* varDeclaration();
   Expr* expression();
   Stmt* statement();
+  Function* function(std::string kind);
   Stmt* IfStatement();
   Stmt* PrintStatement();
   Stmt* WhileStatement();
@@ -30,6 +31,8 @@ private:
   Expr* term();
   Expr* factor();
   Expr* unary();
+  Expr* Call();
+  Expr* FinishCall(Expr* callee);
   Expr* primary();
   Expr* assignment();
   Expr* ParseOr();

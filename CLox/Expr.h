@@ -11,7 +11,7 @@ class Unary;
 class Literal;
 class Variable;
 class Logical;
-
+class CallExpr;
 
 class Expr
 {
@@ -26,7 +26,7 @@ public:
     virtual R visit(Variable* expr) = 0;
     virtual R visit(Assign* expr) = 0;
    
-    //virtual R visit(Call* expr) = 0;
+    virtual R visit(CallExpr* expr) = 0;
     //virtual R visit(Get* expr) = 0;
     virtual R visit(Logical* expr) = 0;
     //virtual R visit(Set* expr) = 0;
@@ -143,4 +143,21 @@ class Logical : public Expr {
     std::any accept(Visitor<std::any>* visitor) {
       return visitor->visit(this);
     }
+};
+
+class CallExpr : public Expr {
+public:
+  Expr* callee_;
+  Token* paren_;
+  std::vector<Expr*> arguments_;
+
+  CallExpr(Expr* callee, Token* paren, std::vector<Expr*> arguments) {
+    callee_ = callee;
+    paren_ = paren;
+    arguments_ = arguments;
+  }
+
+  std::any accept(Visitor<std::any>* visitor) {
+    return visitor->visit(this);
+  }
 };

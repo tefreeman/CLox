@@ -5,8 +5,11 @@
 #include <any>
 class Interpreter : public Expr::Visitor<std::any>, public Stmt::Visitor<void>
 {
+public:
+  Environment* globals_ = new Environment();
+  void executeBlock(std::vector<Stmt*> statements, Environment* env);
 private:
-  Environment environment_;
+  Environment* environment_ = globals_;
   std::any evaluate(Expr* expr);
   bool IsTruthy(std::any val);
   bool IsEqual(std::any val, std::any val2);
@@ -14,7 +17,7 @@ private:
   void CheckNumberOperand(Token* op, std::any left, std::any right);
   std::string Stringify(std::any value);
   void execute(Stmt* stmt);
-  void executeBlock(std::vector<Stmt*> statements, Environment env);
+
 public:
   Interpreter();
   void Interpret(std::vector<Stmt*> statements);
@@ -25,6 +28,7 @@ public:
   std::any visit(Variable*);
   std::any visit(Assign*);
   std::any visit(Logical*);
+  std::any visit(CallExpr*);
   // Stmt Visitor
   void visit(Expression*);
   void visit(Print*);
@@ -32,5 +36,6 @@ public:
   void visit(Block*);
   void visit(If*);
   void visit(While*);
+  void visit(Function*);
 };
 
