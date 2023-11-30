@@ -34,6 +34,10 @@ public:
     //virtual R visit(This* expr) = 0;
   };
     virtual std::any accept(Visitor<std::any>* visitor) = 0;
+    
+    // Added for Resolver
+    virtual void accept(Visitor<void>* visitor) = 0;
+
 };
 
 
@@ -48,6 +52,10 @@ class Unary : public Expr {
     }
 
     std::any accept(Visitor<std::any>* visitor) {
+      return visitor->visit(this);
+    }
+
+    void accept(Visitor<void>* visitor) {
       return visitor->visit(this);
     }
 
@@ -69,6 +77,10 @@ public:
     return visitor->visit(this);
   }
 
+  void accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }
+
 };
 
 class Grouping : public Expr {
@@ -80,6 +92,10 @@ public:
   }
 
   std::any accept(Visitor<std::any>* visitor) {
+    return visitor->visit(this);
+  }
+
+  void accept(Visitor<void>* visitor) {
     return visitor->visit(this);
   }
 
@@ -97,6 +113,10 @@ public:
     return visitor->visit(this);
   }
 
+  void accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }
+
 };
 
 class Variable : public Expr {
@@ -108,6 +128,9 @@ class Variable : public Expr {
     }
 
     std::any accept(Visitor<std::any>* visitor) {
+      return visitor->visit(this);
+    }
+    void accept(Visitor<void>* visitor) {
       return visitor->visit(this);
     }
 
@@ -124,6 +147,10 @@ class Assign : public Expr {
     }
 
     std::any accept(Visitor<std::any>* visitor) {
+      return visitor->visit(this);
+    }
+
+    void accept(Visitor<void>* visitor) {
       return visitor->visit(this);
     }
 };
@@ -143,6 +170,10 @@ class Logical : public Expr {
     std::any accept(Visitor<std::any>* visitor) {
       return visitor->visit(this);
     }
+
+    void accept(Visitor<void>* visitor) {
+      return visitor->visit(this);
+    }
 };
 
 class CallExpr : public Expr {
@@ -158,6 +189,10 @@ public:
   }
 
   std::any accept(Visitor<std::any>* visitor) {
+    return visitor->visit(this);
+  }
+
+  void accept(Visitor<void>* visitor) {
     return visitor->visit(this);
   }
 };

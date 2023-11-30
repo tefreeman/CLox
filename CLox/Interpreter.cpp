@@ -77,6 +77,17 @@ void Interpreter::execute(Stmt* stmt)
 {
   stmt->accept(this);
 }
+std::any Interpreter::lookUpVariable(Token* name, Expr* expr)
+{
+  auto it = locals_.find(expr);
+  if (it != locals_.end()) {
+    
+    return environment_->getAt(it->second, name->lexeme_);
+  }
+  else {
+    return globals_->get(name);
+  }
+}
 void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment* env)
 {
   EnvironmentManager envManager(environment_, env);
@@ -103,6 +114,10 @@ void Interpreter::Interpret(std::vector<Stmt*> statements)
   catch (lox_error::RunTimeError error) {
     error.display();
   }
+}
+void Interpreter::resolve(Expr* expr, int depth)
+{
+  locals_.insert_or_assign(expr, depth);
 }
 std::any Interpreter::visit(Literal* expr)
 {
@@ -174,13 +189,19 @@ std::any Interpreter::visit(Binary* expr)
 
 std::any Interpreter::visit(Variable* expr)
 {
-  return environment_->get(expr->name_);
+  return lookUpVariable(expr->name_, expr);
 }
 
 std::any Interpreter::visit(Assign* expr)
 {
   std::any value = evaluate(expr->value_);
-  environment_->assign(expr->name_, value);
+  auto it = locals_.find(expr);
+  if (it != locals_.end()) {
+    environment_->assignAt(it->second, expr->name_, value);
+  }
+  else {
+    globals_->assign(expr->name_, value);
+  }
   return value;
 }
 

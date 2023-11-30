@@ -40,3 +40,23 @@ std::any Environment::get(Token* name)
   std::string errorMsg = "Undefined variable '" + name->lexeme_ + "'.";
   throw lox_error::RunTimeError(name, errorMsg.c_str());
 }
+
+std::any Environment::getAt(int distance, std::string name)
+{
+  return ancestor(distance)->values_[name];
+}
+
+Environment* Environment::ancestor(int distance)
+{
+  Environment* environment = this;
+  for (int i = 0; i < distance; i++) {
+    environment = environment->enclosing_;
+  }
+
+  return environment;
+}
+
+void Environment::assignAt(int distance, Token* name, std::any value)
+{
+  ancestor(distance)->values_.insert_or_assign(name->lexeme_, value);
+}

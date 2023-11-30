@@ -12,7 +12,7 @@
 class Lox
 {
 private:
-	Interpreter interpreter_;
+	Interpreter* interpreter_ = nullptr;
 public:
 	bool debug_mode_ = false;
 	void RunFile(const std::string& path);

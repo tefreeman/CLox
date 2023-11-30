@@ -3,6 +3,8 @@
 #include "Stmt.h"
 #include "Environment.h"
 #include <any>
+#include <unordered_map>
+
 class Interpreter : public Expr::Visitor<std::any>, public Stmt::Visitor<void>
 {
 public:
@@ -17,10 +19,13 @@ private:
   void CheckNumberOperand(Token* op, std::any left, std::any right);
   std::string Stringify(std::any value);
   void execute(Stmt* stmt);
+  std::unordered_map<Expr*, int> locals_;
+  std::any lookUpVariable(Token* name, Expr* expr);
 
 public:
   Interpreter();
   void Interpret(std::vector<Stmt*> statements);
+  void resolve(Expr* expr, int depth);
   std::any visit(Literal*);
   std::any visit(Grouping*);
   std::any visit(Unary*);

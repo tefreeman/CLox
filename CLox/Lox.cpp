@@ -3,6 +3,7 @@
 #include "Expr.h"
 #include "AstPrinter.h"
 #include "Stmt.h"
+#include "Resolver.h"
 
 void Lox::Run(const std::string& content) {
    Scanner scanner(content);
@@ -14,11 +15,22 @@ void Lox::Run(const std::string& content) {
 
 
    if (lox_error::had_error) return;
+
+   if (lox_error::had_runtime_error) {
+     exit(70);
+   }
+   interpreter_ = new Interpreter();
+   Resolver resolver =  Resolver(interpreter_);
+   resolver.resolve(statements);
+
+
+   if (lox_error::had_error) return;
+
    if (lox_error::had_runtime_error) {
      exit(70);
    }
 
-   interpreter_.Interpret(statements);
+   interpreter_->Interpret(statements);
 
    /*
    AstPrinter* ast = new AstPrinter();
