@@ -56,19 +56,96 @@ Parser::Parser(std::vector<Token> tokens) {
   }
 
   Stmt* Parser::statement() {
-    if (match(PRINT)) {
-      return PrintStatement();
-    }
+    if (match(IF)) return IfStatement();
+    if(match(WHILE)) return WhileStatement();
+    if(match(FOR)) return ForStatement();
+    if (match(PRINT)) return PrintStatement();
+    
     if (match(LEFT_BRACE)) {
       return new Block(block());
     }
     return ExpressionStatement();
   }
 
+  Stmt* Parser::IfStatement()
+  {
+    consume(LEFT_PAREN, "Expect '(' after 'if'.");
+    Expr* condition = expression();
+    consume(RIGHT_PAREN, "Expect ')' after if condition.");
+
+    Stmt* thenBranch = statement();
+
+    Stmt* elseBranch = nullptr;
+
+    if (match(ELSE)) {
+      elseBranch = statement();
+    }
+
+    return new If(condition, thenBranch, elseBranch);
+  }
+
   Stmt* Parser::PrintStatement() {
     Expr* value = expression();
     consume(SEMICOLON, "Expect ';' after value.");
     return new Print(value);
+  }
+
+  Stmt* Parser::WhileStatement()
+  {
+    consume(LEFT_PAREN, "Expect '(' after 'while'.");
+    Expr* condition = expression();
+    consume(RIGHT_PAREN, "Expect ')' after condition.");
+    Stmt* body = statement();
+
+    return new While(condition, body);
+  }
+
+  Stmt* Parser::ForStatement()
+  {
+    consume(LEFT_PAREN, "Expect '(' after 'for'.");
+
+    Stmt* initializer;
+    if (match(SEMICOLON)) {
+      initializer = nullptr;
+    }
+    else if (match(VAR)) {
+      initializer = varDeclaration();
+    }
+    else {
+      initializer = ExpressionStatement();
+    }
+
+
+    Expr* condition = nullptr;
+    if (!check(SEMICOLON)) {
+      condition = expression();
+    }
+
+    consume(SEMICOLON, "Expect ';' after loop condition.");
+
+    Expr* increment = nullptr;
+    if (!check(RIGHT_PAREN)) {
+      increment = expression();
+    }
+    consume(RIGHT_PAREN, "Expect ')' after for clauses.");
+    
+    Stmt* body = statement();
+
+
+
+    if (increment != nullptr) {
+      body = new Block(std::vector<Stmt*>{body, new Expression(increment)});
+    }
+
+    if (condition == nullptr) condition = new Literal(true);
+
+    body = new While(condition, body);
+
+    if (initializer != nullptr) {
+      body = new Block(std::vector<Stmt*>{initializer, body});
+    }
+    return body;
+
   }
 
   Stmt* Parser::ExpressionStatement() {
@@ -154,7 +231,7 @@ Parser::Parser(std::vector<Token> tokens) {
 
   Expr* Parser::assignment()
   {
-    Expr* expr = equality();
+    Expr* expr = ParseOr();
 
     if (match(EQUAL)) {
       Token* equals = previous();
@@ -168,6 +245,32 @@ Parser::Parser(std::vector<Token> tokens) {
       lox_error::Error(equals, "Invalid assignment target.");
 
     }
+    return expr;
+  }
+
+  Expr* Parser::ParseOr()
+  {
+     Expr* expr = ParseAnd();
+
+     while (match(OR)) {
+      Token* op = previous();
+      Expr* right = ParseAnd();
+      expr = new Logical(expr, op, right);
+     }
+
+     return expr;
+  }
+
+  Expr* Parser::ParseAnd()
+  {
+    Expr* expr = equality();
+
+    while (match(AND)) {
+      Token* op = previous();
+      Expr* right = equality();
+      expr = new Logical(expr, op, right);
+    }
+
     return expr;
   }
 

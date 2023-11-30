@@ -21,11 +21,11 @@ public:
     //virtual R visit(Class* expr) = 0;
     virtual R visit(Expression* expr) = 0;
     //virtual R visit(Function* expr) = 0;
-    //virtual R visit(If* expr) = 0;
+    virtual R visit(If* expr) = 0;
     virtual R visit(Print* expr) = 0;
     //virtual R visit(Return* expr) = 0;
     virtual R visit(Var* expr) = 0;
-    //virtual R visit(While* expr) = 0;
+    virtual R visit(While* expr) = 0;
   };
   virtual void accept(Visitor<void>* visitor) = 0;
 };
@@ -64,4 +64,26 @@ class Block : public Stmt {
     Block(std::vector<Stmt*> statements);
 
     void accept(Visitor<void>* visitor);
+};
+
+class If : public Stmt {
+  public:
+   Expr* condition_;
+   Stmt* thenBranch_;
+   Stmt* elseBranch_;
+
+   If(Expr* condition , Stmt* thenBranch, Stmt* elseBranch);
+   void accept(Visitor<void>* visitor);
+
+};
+
+class While : public Stmt {
+public:
+  Expr* condition_;
+  Stmt* body_;
+
+  While(Expr* condition, Stmt* body);
+  
+  void accept(Visitor<void>* visitor);
+
 };

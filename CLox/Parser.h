@@ -20,7 +20,10 @@ private:
   Stmt* varDeclaration();
   Expr* expression();
   Stmt* statement();
+  Stmt* IfStatement();
   Stmt* PrintStatement();
+  Stmt* WhileStatement();
+  Stmt* ForStatement();
   Stmt* ExpressionStatement();
   Expr* equality();
   Expr* comparison();
@@ -29,6 +32,8 @@ private:
   Expr* unary();
   Expr* primary();
   Expr* assignment();
+  Expr* ParseOr();
+  Expr* ParseAnd();
   std::vector<Stmt*> block();
   Token* consume(lox_types::TokenType type, const char* message);
   bool match(std::vector<lox_types::TokenType> types);

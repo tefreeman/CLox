@@ -24,11 +24,13 @@ public:
   std::any visit(Binary*);
   std::any visit(Variable*);
   std::any visit(Assign*);
-
+  std::any visit(Logical*);
   // Stmt Visitor
   void visit(Expression*);
   void visit(Print*);
   void visit(Var*);
   void visit(Block*);
+  void visit(If*);
+  void visit(While*);
 };
 

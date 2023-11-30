@@ -185,6 +185,20 @@ std::any Interpreter::visit(Assign* expr)
   return value;
 }
 
+std::any Interpreter::visit(Logical* expr)
+{
+  std::any left = evaluate(expr->left_);
+
+  if (expr->op_->type_ == lox_types::OR) {
+    if(IsTruthy(left)) return left;
+  }
+  else {
+    if (!IsTruthy(left)) return left;
+  }
+
+  return evaluate(expr->right_);
+}
+
 void Interpreter::visit(Expression* exprStmt)
 {
   evaluate(exprStmt->expression_);
@@ -213,6 +227,25 @@ void Interpreter::visit(Var* stmt)
 void Interpreter::visit(Block* stmt)
 {
   executeBlock(stmt->statements_, new Environment(environment_));
+  return;
+}
+
+void Interpreter::visit(If* stmt)
+{
+  if (IsTruthy(evaluate(stmt->condition_))) {
+    execute(stmt->thenBranch_);
+  }
+  else if (stmt->elseBranch_ != nullptr) {
+    execute(stmt->elseBranch_);
+  }
+  return;
+}
+
+void Interpreter::visit(While* stmt)
+{
+  while (IsTruthy(evaluate(stmt->condition_))) {
+    execute(stmt->body_);
+  }
   return;
 }
 

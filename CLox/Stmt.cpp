@@ -51,3 +51,24 @@ class While;
   void Block::accept(Visitor<void>* visitor) {
     return visitor->visit(this);
   }
+
+  If::If(Expr* condition, Stmt* thenBranch, Stmt* elseBranch)
+  {
+    condition_ = condition;
+    thenBranch_ = thenBranch;
+    elseBranch_ = elseBranch;
+  }
+
+  void If::accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }
+
+  While::While(Expr* condition, Stmt* body)
+  {
+    condition_ = condition;
+    body_ = body;
+  }
+
+  void While::accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }

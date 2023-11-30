@@ -10,6 +10,8 @@ class Grouping;
 class Unary;
 class Literal;
 class Variable;
+class Logical;
+
 
 class Expr
 {
@@ -26,7 +28,7 @@ public:
    
     //virtual R visit(Call* expr) = 0;
     //virtual R visit(Get* expr) = 0;
-    //virtual R visit(Logical* expr) = 0;
+    virtual R visit(Logical* expr) = 0;
     //virtual R visit(Set* expr) = 0;
     //virtual R visit(Super* expr) = 0;
     //virtual R visit(This* expr) = 0;
@@ -119,6 +121,23 @@ class Assign : public Expr {
     Assign(Token* name, Expr* value) {
       name_ = name;
       value_ = value;
+    }
+
+    std::any accept(Visitor<std::any>* visitor) {
+      return visitor->visit(this);
+    }
+};
+
+class Logical : public Expr {
+  public:
+    Expr* left_;
+    Token* op_;
+    Expr* right_;
+
+    Logical(Expr* left, Token* op, Expr* right) {
+      left_ = left;
+      op_ = op;
+      right_= right;
     }
 
     std::any accept(Visitor<std::any>* visitor) {
