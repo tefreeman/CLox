@@ -1,6 +1,7 @@
 #pragma once
 #include <any>
 #include "expr.h"
+
 class Block;
 class Class;
 class Expression;
@@ -12,8 +13,6 @@ class Var;
 class While;
 class Function;
 class Return;
-class Class;
-
 
 class Stmt
 {
@@ -118,9 +117,10 @@ public:
 class Class : public Stmt {
 public:
   Token* name_;
+  Variable* superclass_;
   std::vector<Function*> methods_;
 
-  Class(Token* name, std::vector<Function*> methods);
+  Class(Token* name, Variable* superclass_, std::vector<Function*> methods);
 
   void accept(Visitor<void>* visitor);
 

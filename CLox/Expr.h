@@ -29,12 +29,11 @@ public:
     virtual R visit(Literal* expr) = 0;
     virtual R visit(Variable* expr) = 0;
     virtual R visit(Assign* expr) = 0;
-   
     virtual R visit(CallExpr* expr) = 0;
     virtual R visit(Get* expr) = 0;
     virtual R visit(Logical* expr) = 0;
     virtual R visit(Set* expr) = 0;
-    //virtual R visit(Super* expr) = 0;
+    virtual R visit(Super* expr) = 0;
     virtual R visit(This* expr) = 0;
   };
     virtual std::any accept(Visitor<std::any>* visitor) = 0;
@@ -251,6 +250,26 @@ public:
 
   This(Token* keyword) {
     keyword_ = keyword;
+  }
+
+  std::any accept(Visitor<std::any>* visitor) {
+    return visitor->visit(this);
+  }
+
+  void accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }
+
+};
+
+class Super : public Expr {
+public:
+  Token* keyword_;
+  Token* method_;
+
+  Super(Token* keyword, Token* method) {
+    keyword_ = keyword;
+    method_ = method;
   }
 
   std::any accept(Visitor<std::any>* visitor) {

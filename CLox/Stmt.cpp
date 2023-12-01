@@ -99,9 +99,10 @@ class Class;
     return visitor->visit(this);
   }
 
-  Class::Class(Token* name, std::vector<Function*> methods)
+  Class::Class(Token* name, Variable* superclass, std::vector<Function*> methods)
   {
     name_ = name;
+    superclass_ = superclass;
     methods_ = methods;
   }
 

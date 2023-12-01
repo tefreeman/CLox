@@ -169,6 +169,18 @@ void Resolver::visit(Set* expr)
   resolve(expr->object_);
   return;
 }
+void Resolver::visit(Super* expr) {
+  if (currentClass_ == ClassType::NONE) {
+    lox_error::RunTimeError(expr->keyword_,
+      "Can't use 'super' outside of a class.");
+  }
+  else if (currentClass_ != ClassType::SUBCLASS) {
+    lox_error::RunTimeError(expr->keyword_,
+      "Can't use 'super' in a class with no superclass.");
+  }
+  resolveLocal(expr, expr->keyword_);
+  return;
+}
 
 void Resolver::visit(Var* stmt)
 {
@@ -251,6 +263,23 @@ void Resolver::visit(Class* stmt)
   declare(stmt->name_);
   define(stmt->name_);
 
+  if (stmt->superclass_ != nullptr &&
+    (stmt->name_->lexeme_ == stmt->superclass_->name_->lexeme_)) {
+    lox_error::RunTimeError(stmt->superclass_->name_,
+      "A class can't inherit from itself.");
+  }
+
+
+  if (stmt->superclass_ != nullptr) {
+    currentClass_ = ClassType::SUBCLASS;
+    resolve(stmt->superclass_);
+  }
+
+  if (stmt->superclass_ != nullptr) {
+    beginScope();
+    scopes.back().insert_or_assign("super", true);
+  }
+
   beginScope();
 
   scopes.back().insert_or_assign("this", true);
@@ -265,6 +294,8 @@ void Resolver::visit(Class* stmt)
   }
   endScope();
 
+  if (stmt->superclass_ != nullptr) endScope();
   currentClass_ = enclosingClass;
   return;
 }
+

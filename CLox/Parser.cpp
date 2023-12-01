@@ -149,6 +149,13 @@ Parser::Parser(std::vector<Token> tokens) {
   Stmt* Parser::classDeclaration()
   {
     Token* name = consume(IDENTIFIER, "Expect class name.");
+
+    Variable* superclass = nullptr;
+    if (match(LESS)) {
+      consume(IDENTIFIER, "Expect superclass name.");
+      superclass = new Variable(previous());
+    }
+
     consume(LEFT_BRACE, "Expect '{' before class body.");
 
     std::vector<Function*> methods;
@@ -158,7 +165,7 @@ Parser::Parser(std::vector<Token> tokens) {
 
     consume(RIGHT_BRACE, "Expect '}' after class body.");
 
-    return new Class(name, methods);
+    return new Class(name, superclass, methods);
   }
 
   Stmt* Parser::ForStatement()
@@ -322,6 +329,14 @@ Parser::Parser(std::vector<Token> tokens) {
 
     if (match(IDENTIFIER)) {
       return new Variable(previous());
+    }
+
+    if (match(SUPER)) {
+      Token* keyword = previous();
+      consume(DOT, "Expect '.' after 'super'.");
+      Token* method = consume(IDENTIFIER,
+        "Expect superclass method name.");
+      return new Super(keyword, method);
     }
 
     throw lox_error::ParseError(peek(), "Expect expression.");

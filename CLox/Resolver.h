@@ -20,7 +20,8 @@ private:
 
   enum class ClassType {
     NONE,
-    CLASS
+    CLASS,
+    SUBCLASS
   };
   Interpreter* interpreter_;
   std::deque<std::unordered_map<std::string, bool>> scopes;
@@ -51,7 +52,8 @@ public:
   void visit(Get* expr);
   void visit(Set* expr);
   void visit(This* expr);
-  
+  void visit(Super* expr);
+
   // Stmt
   void visit(Block* stmt);
   void visit(Var* stmt);
@@ -62,6 +64,7 @@ public:
   void visit(Return* stmt);
   void visit(While* stmt);
   void visit(Class* stmt);
+
 
 
 };

@@ -39,6 +39,7 @@ public:
   std::any visit(Get*);
   std::any visit(Set*);
   std::any visit(This*);
+  std::any visit(Super*);
 
   // Stmt Visitor
   void visit(Expression*);

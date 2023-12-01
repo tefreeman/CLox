@@ -6,7 +6,7 @@
 #include "EnvironmentManager.h"
 #include "LoxClass.h"
 #include "LoxInstance.h"
-
+#include <any>
 using namespace lox_types;
 
 std::any Interpreter::evaluate(Expr* expr)
@@ -259,8 +259,13 @@ std::any Interpreter::visit(CallExpr* expr)
 
 std::any Interpreter::visit(Get* expr)
 {
+
   std::any object = evaluate(expr->object_);
-  LoxInstance* tryLoxInstance = std::any_cast<LoxInstance*>(object);
+  LoxInstance* tryLoxInstance = nullptr;
+
+  if (object.type() == typeid(LoxInstance*)) {
+    tryLoxInstance = std::any_cast<LoxInstance*>(object);
+    }
 
   if (tryLoxInstance != nullptr) {
     return tryLoxInstance->get(expr->name_);
@@ -273,9 +278,11 @@ std::any Interpreter::visit(Get* expr)
 std::any Interpreter::visit(Set* expr)
 {
   std::any object = evaluate(expr->object_);
-
-  LoxInstance* tryLoxInstance = std::any_cast<LoxInstance*>(object);
-
+  LoxInstance* tryLoxInstance = nullptr;
+ 
+ if (object.type() == typeid(LoxInstance*)) {
+  tryLoxInstance = std::any_cast<LoxInstance*>(object);
+  }
 
   if (tryLoxInstance == nullptr) {
     throw  lox_error::RunTimeError(expr->name_,
@@ -291,6 +298,27 @@ std::any Interpreter::visit(Set* expr)
 std::any Interpreter::visit(This* expr)
 {
   return lookUpVariable(expr->keyword_, expr);
+}
+
+std::any Interpreter::visit(Super* expr)
+{
+  auto it = locals_.find(expr);
+  int distance = it->second;
+
+  std::any superclassAny = environment_->getAt(distance, "super");
+  std::any objectany = environment_->getAt(distance - 1, "this");
+
+  LoxClass* superclass = std::any_cast<LoxClass*>(environment_->getAt(distance, "super"));
+  LoxInstance* object = std::any_cast<LoxInstance*>(environment_->getAt(distance-1, "this"));
+
+  LoxFunction* method = superclass->findMethod(expr->method_->lexeme_);
+ 
+  if (method == nullptr) {
+    std::string errMsg = "Undefined property '" + expr->method_->lexeme_ + "'.";
+    throw lox_error::RunTimeError(expr->method_, errMsg.c_str());
+  }
+
+ return method->bind(object);
 }
 
 void Interpreter::visit(Expression* exprStmt)
@@ -363,18 +391,44 @@ void Interpreter::visit(Return* stmt)
 
 void Interpreter::visit(Class* stmt)
 {
+  std::any superclass;
+
+  if (stmt->superclass_ != nullptr) {
+    superclass = evaluate(stmt->superclass_);
+
+
+    if (superclass.type() != typeid(LoxClass*)) {
+      throw lox_error::RunTimeError(stmt->superclass_->name_, "Superclass must be a class.");
+    }
+
+
+  }
+
   environment_->define(stmt->name_->lexeme_, nullptr);
   
+  if (stmt->superclass_ != nullptr) {
+    environment_ = new Environment(environment_);
+    environment_->define("super", superclass);
+  }
+
   std::unordered_map<std::string, LoxFunction*> methods;
   
   for (Function* method : stmt->methods_) {
     LoxFunction* function = new LoxFunction(method, environment_, method->name_->lexeme_== "init");
     methods.insert_or_assign(method->name_->lexeme_, function);
   }
+  
+  LoxClass* superClassCasted = nullptr;
 
+  if (superclass.has_value())
+    std::any_cast<LoxClass*>(superclass);
 
-  LoxClass* klass = new LoxClass(stmt->name_->lexeme_, methods);
+  LoxClass* klass = new LoxClass(stmt->name_->lexeme_, superClassCasted, methods);
 
+  // If empty then stmt->superclass_ is nullptr
+  if (superclass.has_value()) {
+    environment_ = environment_->enclosing_;
+  }
   environment_->assign(stmt->name_, klass);
   return;
 }

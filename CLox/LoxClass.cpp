@@ -2,9 +2,10 @@
 #include "LoxInstance.h"
 
 
-LoxClass::LoxClass(std::string& name, std::unordered_map<std::string, LoxFunction*> methods)
+LoxClass::LoxClass(std::string& name, LoxClass* superclass, std::unordered_map<std::string, LoxFunction*> methods)
 {
 name_ = name;
+superclass_ = superclass;
 methods_ = methods;
 }
 
@@ -18,6 +19,10 @@ LoxFunction* LoxClass::findMethod(std::string name)
   if (it != methods_.end()) {
     return it->second;
   }
+  if (superclass_ != nullptr) {
+    return superclass_->findMethod(name);
+  }
+
   return nullptr;
 }
 
