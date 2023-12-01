@@ -19,6 +19,7 @@ void Lox::Run(const std::string& content) {
    if (lox_error::had_runtime_error) {
      exit(70);
    }
+
    interpreter_ = new Interpreter();
    Resolver resolver =  Resolver(interpreter_);
    resolver.resolve(statements);

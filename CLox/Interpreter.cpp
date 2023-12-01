@@ -111,7 +111,7 @@ void Interpreter::Interpret(std::vector<Stmt*> statements)
       execute(statement);
     }
   }
-  catch (lox_error::RunTimeError error) {
+  catch (lox_error::RunTimeError& error) {
     error.display();
   }
 }

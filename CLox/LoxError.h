@@ -30,8 +30,14 @@ namespace lox_error
   }
 
   inline void ReportRuntime(int line, const char* message) {
-    std::cout << message <<  std::endl;
-    std::cout << "[line " << line << "] ";
+    std::cout << message;
+    std::cout << "  [line " << line << "] ";
+    had_runtime_error = true;
+  }
+
+  inline void ReportRuntime(int line, std::string& message) {
+    std::cout << message;
+    std::cout << "  [line " << line << "] ";
     had_runtime_error = true;
   }
   // TODO get rid of this func?
@@ -76,12 +82,12 @@ namespace lox_error
   class RunTimeError : public std::exception {
   private:
     Token* token_;
-    const char* message_;
+    std::string message_;
 
   public:
     inline RunTimeError(Token* token, const char* message) : std::exception(message) {
       token_ = token;
-      message_ = message;
+      message_ = std::string(message);
     };
 
     inline void display() {
