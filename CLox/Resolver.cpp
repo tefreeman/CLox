@@ -80,7 +80,12 @@ void Resolver::visit(Unary* expr)
 void Resolver::resolve(std::vector<Stmt*> statements)
 {
   for (Stmt* statement : statements) {
-    resolve(statement);
+    try {
+      resolve(statement);
+    }
+    catch (lox_error::RunTimeError& e) {
+      e.display();
+    }
   }
 }
 

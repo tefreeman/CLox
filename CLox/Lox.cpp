@@ -13,7 +13,6 @@ void Lox::Run(const std::string& content) {
    std::vector<Stmt*> statements = parser.parse();
 
 
-   try {
      if (lox_error::had_error) return;
 
      if (lox_error::had_runtime_error) {
@@ -21,6 +20,7 @@ void Lox::Run(const std::string& content) {
      }
 
      interpreter_ = new Interpreter();
+
      Resolver resolver =  Resolver(interpreter_);
      resolver.resolve(statements);
 
@@ -32,10 +32,7 @@ void Lox::Run(const std::string& content) {
      }
 
      interpreter_->Interpret(statements);
-     }
-   catch (lox_error::RunTimeError& e) {
-     e.display();
-   }
+ 
 
    /*
    AstPrinter* ast = new AstPrinter();

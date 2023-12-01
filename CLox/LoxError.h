@@ -31,13 +31,13 @@ namespace lox_error
 
   inline void ReportRuntime(int line, const char* message) {
     std::cout << message;
-    std::cout << "  [line " << line << "] ";
+    std::cout << "  [line " << line << "] " << std::endl;
     had_runtime_error = true;
   }
 
   inline void ReportRuntime(int line, std::string& message) {
     std::cout << message;
-    std::cout << "  [line " << line << "] ";
+    std::cout << "  [line " << line << "] " << std::endl;
     had_runtime_error = true;
   }
   // TODO get rid of this func?
