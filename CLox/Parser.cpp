@@ -28,7 +28,7 @@ Parser::Parser(std::vector<Token> tokens) {
     try {
       if (match(FUN)) return function("function");
       if (match(VAR)) return varDeclaration();
-
+      if (match(CLASS)) return classDeclaration();
       return statement();
     }
     catch (lox_error::ParseError err) {
@@ -144,6 +144,21 @@ Parser::Parser(std::vector<Token> tokens) {
     Stmt* body = statement();
 
     return new While(condition, body);
+  }
+
+  Stmt* Parser::classDeclaration()
+  {
+    Token* name = consume(IDENTIFIER, "Expect class name.");
+    consume(LEFT_BRACE, "Expect '{' before class body.");
+
+    std::vector<Function*> methods;
+    while (!check(RIGHT_BRACE) && !isAtEnd()) {
+      methods.push_back(function("method"));
+    }
+
+    consume(RIGHT_BRACE, "Expect '}' after class body.");
+
+    return new Class(name, methods);
   }
 
   Stmt* Parser::ForStatement()
@@ -262,6 +277,10 @@ Parser::Parser(std::vector<Token> tokens) {
       if (match(LEFT_PAREN)) {
         expr = FinishCall(expr);
       }
+      else if (match(DOT)) {
+        Token* name = consume(IDENTIFIER, "Expect property name after '.'.");
+        expr = new Get(expr, name);
+      }
       else {
         break;
       }
@@ -299,6 +318,7 @@ Parser::Parser(std::vector<Token> tokens) {
       consume(RIGHT_PAREN, "Expect ')' after expression.");
       return new Grouping(expr);
     }
+    if (match(THIS)) return new This(previous());
 
     if (match(IDENTIFIER)) {
       return new Variable(previous());
@@ -321,6 +341,13 @@ Parser::Parser(std::vector<Token> tokens) {
          Token* name = varCast->name_;
          return new Assign(name, value);
       }
+      else {
+        Get* getCast = dynamic_cast<Get*>(expr);
+        if (getCast != nullptr) {
+          return new Set(getCast->object_, getCast->name_, value);
+        }
+      }
+
       lox_error::Error(equals, "Invalid assignment target.");
 
     }

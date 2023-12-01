@@ -17,8 +17,9 @@ void Environment::define(std::string key, std::any value)
 
 void Environment::assign(Token* name, std::any value)
 {
-  if (auto search = values_.find(name->lexeme_); search != values_.end()) {
-    values_[name->lexeme_] = value;
+  auto search = values_.find(name->lexeme_);
+  if (search != values_.end()) {
+    search->second = value;
     return;
   }
   if (enclosing_ != nullptr) {
@@ -31,7 +32,8 @@ void Environment::assign(Token* name, std::any value)
 
 std::any Environment::get(Token* name)
 {
-  if (auto search = values_.find(name->lexeme_); search != values_.end()) {
+  auto search = values_.find(name->lexeme_);
+  if (search != values_.end()) {
     return search->second;
   }
 
@@ -43,7 +45,7 @@ std::any Environment::get(Token* name)
 
 std::any Environment::getAt(int distance, std::string name)
 {
-  return ancestor(distance)->values_[name];
+  return ancestor(distance)->values_.find(name)->second;
 }
 
 Environment* Environment::ancestor(int distance)

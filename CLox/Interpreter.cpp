@@ -4,6 +4,9 @@
 #include "LoxCallable.h"
 #include "LoxFunction.h"
 #include "EnvironmentManager.h"
+#include "LoxClass.h"
+#include "LoxInstance.h"
+
 using namespace lox_types;
 
 std::any Interpreter::evaluate(Expr* expr)
@@ -93,7 +96,7 @@ void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment* env)
   EnvironmentManager envManager(environment_, env);
 
   // TODO check if this works (microsoft error handling)
-    environment_ = env;
+   //environment_ = env;
 
     for (Stmt* statement : statements) {
       execute(statement);
@@ -102,6 +105,7 @@ void Interpreter::executeBlock(std::vector<Stmt*> statements, Environment* env)
 }
 Interpreter::Interpreter()
 {
+  environment_ = globals_;
   globals_->define("clock", new LoxCallableClock());
 }
 void Interpreter::Interpret(std::vector<Stmt*> statements)
@@ -229,18 +233,64 @@ std::any Interpreter::visit(CallExpr* expr)
     arguments.push_back(evaluate(argument));
   }
 
-  LoxFunction* function = std::any_cast<LoxFunction*>(callee);
+  LoxCallable* callable = nullptr;
+
+  // TODO implement this way for all any_cast
+  // What if more types of LoxCallable?
+
+  if (callee.type()  == typeid(LoxFunction*)) {
+    callable = std::any_cast<LoxFunction*>(callee);
+  }
+  else if (callee.type() == typeid(LoxClass*)) {
+    callable = std::any_cast<LoxClass*>(callee);
+  }
 
   // TODO verify it works
-  if (function == nullptr) {
+  if (callable == nullptr) {
     throw  lox_error::RunTimeError(expr->paren_, "Can only call functions and classes.");
   }
 
-  if (arguments.size() != function->arity()) {
-    std::string msg = "Expected " + std::to_string(function->arity()) + " arguments but got " + std::to_string(arguments.size()) + ".";
+  if (arguments.size() != callable->arity()) {
+    std::string msg = "Expected " + std::to_string(callable->arity()) + " arguments but got " + std::to_string(arguments.size()) + ".";
     throw lox_error::RunTimeError(expr->paren_, msg.c_str());
   }
-  return function->Call(this, arguments);
+  return callable->Call(this, arguments);
+}
+
+std::any Interpreter::visit(Get* expr)
+{
+  std::any object = evaluate(expr->object_);
+  LoxInstance* tryLoxInstance = std::any_cast<LoxInstance*>(object);
+
+  if (tryLoxInstance != nullptr) {
+    return tryLoxInstance->get(expr->name_);
+  }
+
+  throw  lox_error::RunTimeError(expr->name_,
+    "Only instances have properties.");
+}
+
+std::any Interpreter::visit(Set* expr)
+{
+  std::any object = evaluate(expr->object_);
+
+  LoxInstance* tryLoxInstance = std::any_cast<LoxInstance*>(object);
+
+
+  if (tryLoxInstance == nullptr) {
+    throw  lox_error::RunTimeError(expr->name_,
+      "Only instances have fields.");
+  }
+
+  std::any value = evaluate(expr->value_);
+
+  tryLoxInstance->set(expr->name_, value);
+  return value;
+}
+
+std::any Interpreter::visit(This* expr)
+{
+  return lookUpVariable(expr->keyword_, expr);
 }
 
 void Interpreter::visit(Expression* exprStmt)
@@ -295,7 +345,7 @@ void Interpreter::visit(While* stmt)
 
 void Interpreter::visit(Function* stmt)
 {
-  LoxFunction* function = new LoxFunction(stmt, environment_);
+  LoxFunction* function = new LoxFunction(stmt, environment_, false);
   environment_->define(stmt->name_->lexeme_, function);
   return;
 }
@@ -309,5 +359,23 @@ void Interpreter::visit(Return* stmt)
   }
 
   throw lox_error::ReturnException(value, "ReturnException");
+}
+
+void Interpreter::visit(Class* stmt)
+{
+  environment_->define(stmt->name_->lexeme_, nullptr);
+  
+  std::unordered_map<std::string, LoxFunction*> methods;
+  
+  for (Function* method : stmt->methods_) {
+    LoxFunction* function = new LoxFunction(method, environment_, method->name_->lexeme_== "init");
+    methods.insert_or_assign(method->name_->lexeme_, function);
+  }
+
+
+  LoxClass* klass = new LoxClass(stmt->name_->lexeme_, methods);
+
+  environment_->assign(stmt->name_, klass);
+  return;
 }
 

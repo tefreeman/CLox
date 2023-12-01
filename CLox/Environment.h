@@ -5,10 +5,9 @@
 #include "Token.h"
 class Environment
 {
-  private:
-    std::unordered_map<std::string, std::any> values_;
+
   public:
-    
+    std::unordered_map<std::string, std::any> values_;
     Environment* enclosing_;
     Environment();
     Environment(Environment* enclosing);

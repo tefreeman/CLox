@@ -7,11 +7,12 @@
 
 class Interpreter : public Expr::Visitor<std::any>, public Stmt::Visitor<void>
 {
-public:
-  Environment* globals_ = new Environment();
-  void executeBlock(std::vector<Stmt*> statements, Environment* env);
+
+
 private:
-  Environment* environment_ = globals_;
+  Environment* environment_;
+  std::unordered_map<Expr*, int> locals_;
+
   std::any evaluate(Expr* expr);
   bool IsTruthy(std::any val);
   bool IsEqual(std::any val, std::any val2);
@@ -19,10 +20,11 @@ private:
   void CheckNumberOperand(Token* op, std::any left, std::any right);
   std::string Stringify(std::any value);
   void execute(Stmt* stmt);
-  std::unordered_map<Expr*, int> locals_;
   std::any lookUpVariable(Token* name, Expr* expr);
 
 public:
+  Environment* globals_ = new Environment();
+  void executeBlock(std::vector<Stmt*> statements, Environment* env);
   Interpreter();
   void Interpret(std::vector<Stmt*> statements);
   void resolve(Expr* expr, int depth);
@@ -34,7 +36,9 @@ public:
   std::any visit(Assign*);
   std::any visit(Logical*);
   std::any visit(CallExpr*);
-
+  std::any visit(Get*);
+  std::any visit(Set*);
+  std::any visit(This*);
 
   // Stmt Visitor
   void visit(Expression*);
@@ -45,5 +49,6 @@ public:
   void visit(While*);
   void visit(Function*);
   void visit(Return*);
+  void visit(Class*);
 };
 

@@ -25,6 +25,7 @@ private:
   Stmt* IfStatement();
   Stmt* PrintStatement();
   Stmt* WhileStatement();
+  Stmt* classDeclaration();
   Stmt* ForStatement();
   Stmt* ExpressionStatement();
   Expr* equality();

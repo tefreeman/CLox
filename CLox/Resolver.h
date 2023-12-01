@@ -10,14 +10,24 @@
 class Resolver: Expr::Visitor<void>, Stmt::Visitor<void>
 {
 private:
-  enum FunctionType {
+
+  enum class FunctionType {
     NONE,
-    FUNCTION
+    FUNCTION,
+    INITIALIZER,
+    METHOD
+  };
+
+  enum class ClassType {
+    NONE,
+    CLASS
   };
   Interpreter* interpreter_;
   std::stack<std::unordered_map<std::string, bool>> scopes;
   
   FunctionType currentFunction_;
+  ClassType currentClass_;
+
   void resolve(Stmt* stmt);
   void resolve(Expr* expr);
   void beginScope();
@@ -38,6 +48,9 @@ public:
   void visit(Literal* expr);
   void visit(Logical* expr);
   void visit(Unary* expr);
+  void visit(Get* expr);
+  void visit(Set* expr);
+  void visit(This* expr);
   
   // Stmt
   void visit(Block* stmt);
@@ -48,6 +61,7 @@ public:
   void visit(Print* stmt);
   void visit(Return* stmt);
   void visit(While* stmt);
+  void visit(Class* stmt);
 
 
 };

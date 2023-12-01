@@ -12,6 +12,10 @@ class Literal;
 class Variable;
 class Logical;
 class CallExpr;
+class Get;
+class Set;
+class Super;
+class This;
 
 class Expr
 {
@@ -27,11 +31,11 @@ public:
     virtual R visit(Assign* expr) = 0;
    
     virtual R visit(CallExpr* expr) = 0;
-    //virtual R visit(Get* expr) = 0;
+    virtual R visit(Get* expr) = 0;
     virtual R visit(Logical* expr) = 0;
-    //virtual R visit(Set* expr) = 0;
+    virtual R visit(Set* expr) = 0;
     //virtual R visit(Super* expr) = 0;
-    //virtual R visit(This* expr) = 0;
+    virtual R visit(This* expr) = 0;
   };
     virtual std::any accept(Visitor<std::any>* visitor) = 0;
     
@@ -195,4 +199,66 @@ public:
   void accept(Visitor<void>* visitor) {
     return visitor->visit(this);
   }
+};
+
+class Get : public Expr {
+public:
+  Token* name_;
+  Expr* object_;
+
+  Get(Expr* object, Token* name) {
+    name_ = name;
+    object_ = object;
+  }
+
+  std::any accept(Visitor<std::any>* visitor) {
+    return visitor->visit(this);
+  }
+
+  void accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }
+
+};
+
+
+class Set : public Expr {
+public:
+  Expr* object_;
+  Token* name_;
+  Expr* value_;
+
+  Set(Expr* object, Token* name, Expr* value) {
+    name_ = name;
+    object_ = object;
+    value_ = value;
+  }
+
+  std::any accept(Visitor<std::any>* visitor) {
+    return visitor->visit(this);
+  }
+
+  void accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }
+
+};
+
+
+class This : public Expr {
+public:
+  Token* keyword_;
+
+  This(Token* keyword) {
+    keyword_ = keyword;
+  }
+
+  std::any accept(Visitor<std::any>* visitor) {
+    return visitor->visit(this);
+  }
+
+  void accept(Visitor<void>* visitor) {
+    return visitor->visit(this);
+  }
+
 };

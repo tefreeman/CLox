@@ -7,6 +7,7 @@ Resolver::Resolver(Interpreter* interpreter)
 {
   interpreter_ = interpreter;
   currentFunction_ = FunctionType::NONE;
+  currentClass_ = ClassType::NONE;
 }
 
 void Resolver::visit(Variable* expr)
@@ -148,11 +149,24 @@ void Resolver::resolveFunction(Function* func, FunctionType type)
 
 
 
+void Resolver::visit(Get* expr)
+{
+  resolve(expr->object_);
+  return;
+}
+
 void Resolver::visit(Block* stmt)
 {
   beginScope();
   resolve(stmt->statements_);
   endScope();
+  return;
+}
+
+void Resolver::visit(Set* expr)
+{
+  resolve(expr->value_);
+  resolve(expr->object_);
   return;
 }
 
@@ -172,6 +186,17 @@ void Resolver::visit(Function* stmt)
   define(stmt->name_);
 
   resolveFunction(stmt, FunctionType::FUNCTION);
+  return;
+}
+
+void Resolver::visit(This* expr)
+{
+  if (currentClass_ == ClassType::NONE) {
+    lox_error::RunTimeError(expr->keyword_,
+      "Can't use 'this' outside of a class.");
+    return;
+  }
+  resolveLocal(expr, expr->keyword_);
   return;
 }
 
@@ -201,6 +226,10 @@ void Resolver::visit(Return* stmt)
     lox_error::RunTimeError(stmt->keyword_, "Can't return from top-level code.");
   }
   if (stmt->value_ != nullptr) {
+    if (currentFunction_ == FunctionType::INITIALIZER) {
+      lox_error::RunTimeError(stmt->keyword_,
+        "Can't return a value from an initializer.");
+    }
     resolve(stmt->value_);
   }
 
@@ -211,5 +240,30 @@ void Resolver::visit(While* stmt)
 {
   resolve(stmt->condition_);
   resolve(stmt->body_);
+  return;
+}
+
+void Resolver::visit(Class* stmt)
+{
+  ClassType enclosingClass = currentClass_;
+  currentClass_ = ClassType::CLASS;
+
+  declare(stmt->name_);
+  define(stmt->name_);
+
+  beginScope();
+  scopes.top().insert_or_assign("this", true);
+
+  for (Function* method : stmt->methods_) {
+    FunctionType declaration = FunctionType::METHOD;
+
+    if (method->name_->lexeme_ == ("init")) {
+      declaration = FunctionType::INITIALIZER;
+    }
+    resolveFunction(method, declaration);
+  }
+  endScope();
+
+  currentClass_ = enclosingClass;
   return;
 }

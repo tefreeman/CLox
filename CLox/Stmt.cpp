@@ -14,7 +14,7 @@ class Return;
 class Var;
 class While;
 class Return;
-
+class Class;
 
 
   Expression::Expression(Expr* expression) {
@@ -95,6 +95,17 @@ class Return;
   }
 
   void Return::accept(Visitor<void>* visitor)
+  {
+    return visitor->visit(this);
+  }
+
+  Class::Class(Token* name, std::vector<Function*> methods)
+  {
+    name_ = name;
+    methods_ = methods;
+  }
+
+  void Class::accept(Visitor<void>* visitor)
   {
     return visitor->visit(this);
   }

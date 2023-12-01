@@ -5,17 +5,21 @@
 #include <any>
 #include <string>
 
+// TODO fix foward delcaration 
+class LoxInstance;
+
 class LoxFunction : public LoxCallable {
 private:
-  Environment closure_;
+  Environment* closure_;
+  Function* declaration_;
+  bool isInitializer_;
+
 public:
-  LoxFunction(Function* declaration, Environment closure);
+  LoxFunction(Function* declaration, Environment* closure, bool isInitializer);
 
   std::any Call(Interpreter* interpreter, std::vector<std::any> arguments);
   int arity();
   std::string ToString();
-
-private:
-  Function* declaration_;
+  LoxFunction* bind(LoxInstance* instance);
 };
 
