@@ -5,7 +5,7 @@
 #include <vector>
 #include <stack>
 #include <unordered_map>
-
+#include <deque>
 //TODO check Visitor<std::any> -- text says void
 class Resolver: Expr::Visitor<void>, Stmt::Visitor<void>
 {
@@ -23,7 +23,7 @@ private:
     CLASS
   };
   Interpreter* interpreter_;
-  std::stack<std::unordered_map<std::string, bool>> scopes;
+  std::deque<std::unordered_map<std::string, bool>> scopes;
   
   FunctionType currentFunction_;
   ClassType currentClass_;

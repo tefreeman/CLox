@@ -7,7 +7,7 @@ class Environment
 {
 
   public:
-    std::unordered_map<std::string, std::any> values_;
+    std::unordered_map<std::string, std::any>* values_;
     Environment* enclosing_;
     Environment();
     Environment(Environment* enclosing);

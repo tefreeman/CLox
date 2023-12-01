@@ -3,12 +3,12 @@
 
 class EnvironmentManager {
 public:
-  EnvironmentManager(Environment*& currentEnvironment, Environment* newEnvironment)
+  inline EnvironmentManager(Environment*& currentEnvironment, Environment* newEnvironment)
     : currentEnvironment_(currentEnvironment), previousEnvironment_(currentEnvironment) {
     currentEnvironment_ = newEnvironment;
   }
 
-  ~EnvironmentManager() {
+  inline ~EnvironmentManager() {
     // Reset the environment to its previous state
     currentEnvironment_ = previousEnvironment_;
 

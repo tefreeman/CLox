@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <stack>
 #include "LoxError.h"
-
+#include <deque>
 Resolver::Resolver(Interpreter* interpreter)
 {
   interpreter_ = interpreter;
@@ -13,9 +13,9 @@ Resolver::Resolver(Interpreter* interpreter)
 void Resolver::visit(Variable* expr)
 {
   if (!scopes.empty()) {
-    std::unordered_map<std::string, bool>::const_iterator it = scopes.top().find(expr->name_->lexeme_);
+    std::unordered_map<std::string, bool>::const_iterator it = scopes.back().find(expr->name_->lexeme_);
     
-    if (it != scopes.top().end()) {
+    if (it != scopes.back().end()) {
       if (it->second == false) {
       throw lox_error::RunTimeError(expr->name_,
         "Can't read local variable in its own initializer.");
@@ -96,35 +96,35 @@ void Resolver::resolve(Expr* expr)
 
 void Resolver::beginScope()
 {
-  scopes.push(std::unordered_map<std::string, bool>());
+  scopes.push_back(std::unordered_map<std::string, bool>());
 }
 
 void Resolver::endScope()
 {
-  scopes.pop();
+  scopes.pop_back();
 }
 
 void Resolver::declare(Token* name)
 {
   if (scopes.empty()) return;
-  if (auto search = scopes.top().find(name->lexeme_); search != scopes.top().end()) {
+  if (auto search = scopes.back().find(name->lexeme_); search != scopes.back().end()) {
     throw lox_error::RunTimeError(name,
       "Already a variable with this name in this scope.");
   }
-  scopes.top().insert_or_assign(name->lexeme_, false);
+  scopes.back().insert_or_assign(name->lexeme_, false);
 }
 
 void Resolver::define(Token* name)
 {
   if (scopes.empty()) return;
-  scopes.top().insert_or_assign(name->lexeme_, true);
+  scopes.back().insert_or_assign(name->lexeme_, true);
 }
 
 void Resolver::resolveLocal(Expr* expr, Token* name)
 {
   int i = scopes.size() - 1;
   for (i; i >= 0; i--) {
-    if (scopes.top().find(name->lexeme_) != scopes.top().end()) {
+    if (scopes.at(i).find(name->lexeme_) != scopes.at(i).end()) {
       interpreter_->resolve(expr, scopes.size() - 1 - i);
       return;
     }
@@ -252,7 +252,8 @@ void Resolver::visit(Class* stmt)
   define(stmt->name_);
 
   beginScope();
-  scopes.top().insert_or_assign("this", true);
+
+  scopes.back().insert_or_assign("this", true);
 
   for (Function* method : stmt->methods_) {
     FunctionType declaration = FunctionType::METHOD;
