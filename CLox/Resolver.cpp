@@ -171,11 +171,11 @@ void Resolver::visit(Set* expr)
 }
 void Resolver::visit(Super* expr) {
   if (currentClass_ == ClassType::NONE) {
-    lox_error::RunTimeError(expr->keyword_,
+    throw lox_error::RunTimeError(expr->keyword_,
       "Can't use 'super' outside of a class.");
   }
   else if (currentClass_ != ClassType::SUBCLASS) {
-    lox_error::RunTimeError(expr->keyword_,
+    throw lox_error::RunTimeError(expr->keyword_,
       "Can't use 'super' in a class with no superclass.");
   }
   resolveLocal(expr, expr->keyword_);
@@ -204,7 +204,7 @@ void Resolver::visit(Function* stmt)
 void Resolver::visit(This* expr)
 {
   if (currentClass_ == ClassType::NONE) {
-    lox_error::RunTimeError(expr->keyword_,
+    throw lox_error::RunTimeError(expr->keyword_,
       "Can't use 'this' outside of a class.");
     return;
   }
@@ -235,11 +235,11 @@ void Resolver::visit(Print* stmt)
 void Resolver::visit(Return* stmt)
 {
   if(currentFunction_ == FunctionType::NONE) {
-    lox_error::RunTimeError(stmt->keyword_, "Can't return from top-level code.");
+    throw lox_error::RunTimeError(stmt->keyword_, "Can't return from top-level code.");
   }
   if (stmt->value_ != nullptr) {
     if (currentFunction_ == FunctionType::INITIALIZER) {
-      lox_error::RunTimeError(stmt->keyword_,
+      throw lox_error::RunTimeError(stmt->keyword_,
         "Can't return a value from an initializer.");
     }
     resolve(stmt->value_);
@@ -265,7 +265,7 @@ void Resolver::visit(Class* stmt)
 
   if (stmt->superclass_ != nullptr &&
     (stmt->name_->lexeme_ == stmt->superclass_->name_->lexeme_)) {
-    lox_error::RunTimeError(stmt->superclass_->name_,
+    throw lox_error::RunTimeError(stmt->superclass_->name_,
       "A class can't inherit from itself.");
   }
 

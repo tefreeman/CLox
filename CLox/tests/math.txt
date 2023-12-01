@@ -1,0 +1,21 @@
+fun assert(name, a, b) {
+	if (a == b) {
+		print "PASSED " + name + " ";
+		print a;
+		print " == ";
+		print b;
+		print "\n";
+	} else {
+		print "FAILED " + name + " ";
+		print a;
+		print " != ";
+		print b;
+		print "\n";
+	}
+}
+
+var largeNum = 10000;
+largeNum = largeNum * largeNum;
+largeNum = largeNum * largeNum;
+
+assert("LargeNumberTest", largeNum, 10000000000000000);

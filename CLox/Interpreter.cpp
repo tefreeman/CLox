@@ -7,6 +7,7 @@
 #include "LoxClass.h"
 #include "LoxInstance.h"
 #include <any>
+#include <regex>
 using namespace lox_types;
 
 std::any Interpreter::evaluate(Expr* expr)
@@ -330,8 +331,12 @@ void Interpreter::visit(Expression* exprStmt)
 void Interpreter::visit(Print* stmt)
 {
   std::any value = evaluate(stmt->expression_);
-  std::cout << Stringify(value) << std::endl;
-  return;
+  std::string str = Stringify(value);
+
+  // Added new line detection
+  std::string const result = std::regex_replace(str, std::regex("\\\\n"), "\n");
+ 
+  std::cout << result;
 }
 
 void Interpreter::visit(Var* stmt)

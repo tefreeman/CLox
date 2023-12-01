@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="tests">
+      <UniqueIdentifier>{bbfde55a-e5b5-492b-b09b-b03db9ea66f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,5 +113,16 @@
     <ClInclude Include="LoxInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="tests\math.txt">
+      <Filter>tests</Filter>
+    </Text>
+    <Text Include="tests\fib.txt">
+      <Filter>tests</Filter>
+    </Text>
+    <Text Include="tests\classes.txt">
+      <Filter>tests</Filter>
+    </Text>
   </ItemGroup>
 </Project>

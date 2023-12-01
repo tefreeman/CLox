@@ -7,6 +7,7 @@
 #include "Lox.h"
 #include "Tests.h"
 #include "AstPrinter.h"
+#include <filesystem>
 
 int main(int argc, char* argv[]) {
   
@@ -19,9 +20,17 @@ int main(int argc, char* argv[]) {
     else if (argc == 2) {
           if (strcmp(argv[1], "-test") == 0) {
           // do test
-            std::cout << "Running test" << std::endl;
+            std::filesystem::path cwd = std::filesystem::current_path();
+            std::string path = cwd.string() + "/tests";
 
-            lox_testing::run_test(lox_testing::test_str_1, lox_testing::expected_1);
+            std::filesystem::recursive_directory_iterator it(path);
+
+            for (auto& p : it) {
+              if (p.path().extension() == ".txt") {
+                std::cout << "Running test: " << p.path().filename() << std::endl;
+                lox.RunFile(p.path().string());
+              }
+            }
             }
           else if (strcmp(argv[1], "-debug") == 0) {
             lox.debug_mode_ = true;
