@@ -421,7 +421,7 @@ void Interpreter::visit(Class* stmt)
   LoxClass* superClassCasted = nullptr;
 
   if (superclass.has_value())
-    std::any_cast<LoxClass*>(superclass);
+    superClassCasted = std::any_cast<LoxClass*>(superclass);
 
   LoxClass* klass = new LoxClass(stmt->name_->lexeme_, superClassCasted, methods);
 
