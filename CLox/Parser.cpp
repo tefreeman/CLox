@@ -31,7 +31,8 @@ Parser::Parser(std::vector<Token> tokens) {
       if (match(CLASS)) return classDeclaration();
       return statement();
     }
-    catch (lox_error::ParseError err) {
+    catch (lox_error::ParseError& err) {
+      err.display();
       synchronize();
       return nullptr;
     }
@@ -82,7 +83,7 @@ Parser::Parser(std::vector<Token> tokens) {
     if (!check(RIGHT_PAREN)) {
       do {
         if (parameters.size() >= 255) {
-          throw lox_error::RunTimeError(peek(), "Can't have more than 255 parameters.");
+          throw lox_error::ParseError(peek(), "Can't have more than 255 parameters.");
         }
 
         parameters.push_back(
@@ -92,7 +93,8 @@ Parser::Parser(std::vector<Token> tokens) {
     consume(RIGHT_PAREN, "Expect ')' after parameters.");
 
     std::string expectRightBrace = "Expect '{' before " + kind + " body.";
-    consume(LEFT_BRACE, expectRightBrace.c_str());
+   
+   consume(LEFT_BRACE, expectRightBrace.c_str());
 
     std::vector<Stmt*> body = block();
 
@@ -302,7 +304,7 @@ Parser::Parser(std::vector<Token> tokens) {
     if (!check(RIGHT_PAREN)) {
       do {
         if (arguments.size() >= 255) {
-          throw lox_error::RunTimeError(peek(), "Can't have more than 255 arguments.");
+          throw lox_error::ParseError(peek(), "Can't have more than 255 arguments.");
         }
         arguments.push_back(expression());
       } while (match(COMMA));

@@ -4,9 +4,12 @@
 #include "AstPrinter.h"
 #include "Stmt.h"
 #include "Resolver.h"
+#include "LoxTest.h"
+#include "LoxConsole.h"
 
 void Lox::Run(const std::string& content) {
    Scanner scanner(content);
+
    std::vector<Token> tokens = scanner.ScanTokens();
    
    Parser parser(tokens);
@@ -15,21 +18,16 @@ void Lox::Run(const std::string& content) {
 
      if (lox_error::had_error) return;
 
-     if (lox_error::had_runtime_error) {
-       exit(70);
-     }
 
      interpreter_ = new Interpreter();
 
      Resolver resolver =  Resolver(interpreter_);
      resolver.resolve(statements);
 
-
+     if (lox_error::had_runtime_error) return;
      if (lox_error::had_error) return;
 
-     if (lox_error::had_runtime_error) {
-       exit(70);
-     }
+
 
      interpreter_->Interpret(statements);
  
@@ -44,7 +42,9 @@ void Lox::Run(const std::string& content) {
        std::cout << token.ToString() << std::endl;
      }
    }
+
 }
+
 
 void Lox::RunFile(const std::string& path) {
     std::ifstream file(path, std::ios::binary | std::ios::ate);
@@ -65,6 +65,42 @@ void Lox::RunFile(const std::string& path) {
     else {
         throw std::runtime_error("Unable to read file.");
     }
+}
+
+void Lox::TestRunFile(const std::string& path) {
+  std::ifstream file(path, std::ios::binary | std::ios::ate);
+
+  if (!file.is_open()) {
+    throw std::runtime_error("Unable to open file.");
+  }
+
+  std::streamsize size = file.tellg();
+  file.seekg(0, std::ios::beg);
+
+  std::vector<char> buffer(size);
+
+  if (file.read(buffer.data(), size)) {
+    std::string content(buffer.begin(), buffer.end());
+    std::string filename = path.substr(path.find_last_of("/\\")+ 1);
+    LoxTest test = LoxTest(path , content);
+    
+    test.printStart();
+
+    Run(content);
+
+
+    test.test();
+    test.printResults();
+
+    lox_console::clear();
+
+    // reset errors? may need to change into a test mode
+    lox_error::had_error = false;
+    lox_error::had_runtime_error = false;
+  }
+  else {
+    throw std::runtime_error("Unable to read file.");
+  }
 }
 
 void Lox::RunPrompt() {

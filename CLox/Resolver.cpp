@@ -81,6 +81,7 @@ void Resolver::resolve(std::vector<Stmt*> statements)
 {
   for (Stmt* statement : statements) {
     try {
+      if (statement != nullptr)
       resolve(statement);
     }
     catch (lox_error::RunTimeError& e) {

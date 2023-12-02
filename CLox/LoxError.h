@@ -4,7 +4,7 @@
 #include <exception>
 #include "Token.h"
 #include "LoxTypes.h"
-
+#include "LoxConsole.h"
 
 
 // Error system moved to seperate file to avoid circular dependencies
@@ -15,29 +15,27 @@ namespace lox_error
 
   inline void Report(int line, std::string where, std::string& message)
   {
-    std::cout << "[line " << line << "] ";
-    std::cout << "Error " << where << ": ";
-    std::cout << message << std::endl;
+    std::string msg =  "[line " + std::to_string(line) + "] " + "Error " + where + ": " + "\n";
+    lox_console::print(msg); 
     had_error = true;
   }
 
   inline void Report(int line, std::string where, const char* message)
   {
-    std::cout << "[line " << line << "] ";
-    std::cout << "Error " << where << ": ";
-    std::cout << message << std::endl;
+    std::string msg = "[line " + std::to_string(line) + "] " + "Error " + where + ": " + "\n";
+    lox_console::print(msg);
     had_error = true;
   }
 
   inline void ReportRuntime(int line, const char* message) {
-    std::cout << message;
-    std::cout << "  [line " << line << "] " << std::endl;
+    std::string msg = message + std::string("[line " + std::to_string(line) + "] ") + "\n";
+    lox_console::print(msg);
     had_runtime_error = true;
   }
 
   inline void ReportRuntime(int line, std::string& message) {
-    std::cout << message;
-    std::cout << "  [line " << line << "] " << std::endl;
+    std::string msg = message + std::string("[line " + std::to_string(line) + "] ") + "\n";
+    lox_console::print(msg);
     had_runtime_error = true;
   }
   // TODO get rid of this func?

@@ -1,8 +1,0 @@
-super.foo("bar"); // Error at 'super': Can't use 'super' outside of a class.
-super.foo; // Error at 'super': Can't use 'super' outside of a class.
-
-C().test(); // expect: A
-
-baz.inFoo(); // expect: in foo
-baz.inBar(); // expect: in bar
-baz.inBaz(); // expect: in baz

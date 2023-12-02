@@ -9,7 +9,18 @@ class LoxCallable {
 };
 
 
+// Global _clock()
 class LoxCallableClock : public LoxCallable {
+public:
+  int arity();
+  std::any Call(Interpreter* interpreter, std::vector<std::any> arguments);
+  std::string toString();
+
+};
+
+
+// Global _console(int) -- returns console history at index
+class LoxCallableConsoleHistory : public LoxCallable {
 public:
   int arity();
   std::any Call(Interpreter* interpreter, std::vector<std::any> arguments);

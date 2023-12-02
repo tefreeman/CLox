@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <stdexcept>
 #include "Lox.h"
-#include "Tests.h"
 #include "AstPrinter.h"
 #include <filesystem>
 
@@ -26,9 +25,8 @@ int main(int argc, char* argv[]) {
             std::filesystem::recursive_directory_iterator it(path);
 
             for (auto& p : it) {
-              if (p.path().extension() == ".txt") {
-                std::cout << "Running test: " << p.path().filename() << std::endl;
-                lox.RunFile(p.path().string());
+              if (p.path().extension() == ".lox") {
+                lox.TestRunFile(p.path().string());
               }
             }
             }

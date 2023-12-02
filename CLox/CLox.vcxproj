@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AstPrinter.h" />
+    <ClInclude Include="LoxConsole.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="EnvironmentManager.h" />
     <ClInclude Include="Expr.h" />
@@ -161,16 +162,13 @@
     <ClInclude Include="Resolver.h" />
     <ClInclude Include="Scanner.h" />
     <ClInclude Include="Stmt.h" />
-    <ClInclude Include="Tests.h" />
+    <ClInclude Include="LoxTest.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="LoxTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\classes.txt" />
     <Text Include="tests\fib.txt" />
-    <Text Include="tests\math.txt">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

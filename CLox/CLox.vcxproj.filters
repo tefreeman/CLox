@@ -74,7 +74,7 @@
     <ClInclude Include="LoxError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tests.h">
+    <ClInclude Include="LoxTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AstPrinter.h">
@@ -113,11 +113,11 @@
     <ClInclude Include="LoxInstance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LoxConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="tests\math.txt">
-      <Filter>tests</Filter>
-    </Text>
     <Text Include="tests\fib.txt">
       <Filter>tests</Filter>
     </Text>

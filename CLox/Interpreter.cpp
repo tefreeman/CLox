@@ -8,6 +8,7 @@
 #include "LoxInstance.h"
 #include <any>
 #include <regex>
+#include "LoxConsole.h"
 using namespace lox_types;
 
 std::any Interpreter::evaluate(Expr* expr)
@@ -43,7 +44,21 @@ bool Interpreter::IsEqual(std::any val, std::any val2)
     else if (val.type() == typeid(nullptr_t)) {
       return true;
     }
-
+    else if (val.type() == typeid(LoxClass*)) {
+      return std::any_cast<LoxClass*>(val) == std::any_cast<LoxClass*>(val2);
+    }
+    else if (val.type() == typeid(LoxFunction*)) {
+      return std::any_cast<LoxFunction*>(val) == std::any_cast<LoxFunction*>(val2);
+    }
+    else if (val.type() == typeid(LoxInstance*)) {
+      return std::any_cast<LoxInstance*>(val) == std::any_cast<LoxInstance*>(val2);
+    }
+    else if (val.type() == typeid(LoxCallableClock*)) {
+      return std::any_cast<LoxCallableClock*>(val) == std::any_cast<LoxCallableClock*>(val2);
+    }
+    else if (val.type() == typeid(LoxCallableConsoleHistory*)) {
+      return std::any_cast<LoxCallableConsoleHistory*>(val) == std::any_cast<LoxCallableConsoleHistory*>(val2);
+    }
   }
   return false;
 }
@@ -58,7 +73,7 @@ void Interpreter::CheckNumberOperand(Token* op, std::any left, std::any right)
 {
   if (left.type() == typeid(double) && right.type() == typeid(double)) return;
 
-  throw lox_error::RunTimeError(op, "Operands must be a number.");
+  throw lox_error::RunTimeError(op, "Operands must be numbers.");
 }
 std::string Interpreter::Stringify(std::any value)
 {
@@ -74,6 +89,23 @@ std::string Interpreter::Stringify(std::any value)
   else if (value.type() == typeid(std::string)) {
     return std::any_cast<std::string>(value);
   }
+  else if (value.type() == typeid(LoxClass*)) {
+    LoxClass* klass =  std::any_cast<LoxClass*>(value);
+    return klass->toString();
+  }
+  else if (value.type() == typeid(LoxInstance*)) {
+    LoxInstance* instance = std::any_cast<LoxInstance*>(value);
+    return instance->toString();
+  }
+  else if (value.type() == typeid(LoxFunction*)) {
+    LoxFunction* func = std::any_cast<LoxFunction*>(value);
+    return func->ToString();
+  }
+  else if (value.type() == typeid(LoxCallableClock*)) {
+    LoxCallableClock* func = std::any_cast<LoxCallableClock*>(value);
+    return func->toString();
+  }
+
   
   return "INVALID std::any value in Interpreter::stringify";
 }
@@ -108,6 +140,7 @@ Interpreter::Interpreter()
 {
   environment_ = globals_;
   globals_->define("clock", new LoxCallableClock());
+  //globals_->define("console", new LoxCallableConsoleHistory());
 }
 void Interpreter::Interpret(std::vector<Stmt*> statements)
 {
@@ -143,7 +176,7 @@ std::any Interpreter::visit(Unary* expr)
       return !IsTruthy(right);
     case MINUS:
       CheckNumberOperand(expr->op_, right);
-      return std::any_cast<double>(right);
+      return -(std::any_cast<double>(right));
     break;
   }
   return nullptr;
@@ -156,29 +189,36 @@ std::any Interpreter::visit(Binary* expr)
 
   switch (expr->op_->type_) {
     case MINUS:
+      CheckNumberOperand(expr->op_, left, right);
       return std::any_cast<double>(left) - std::any_cast<double>(right);
     case SLASH:
+      CheckNumberOperand(expr->op_, left, right);
       return std::any_cast<double>(left) / std::any_cast<double>(right);
     case STAR:
+      CheckNumberOperand(expr->op_, left, right);
       return std::any_cast<double>(left) * std::any_cast<double>(right);
 
     case PLUS:
       if (left.type() == typeid(double) && right.type() == typeid(double)) {
         return std::any_cast<double>(left) + std::any_cast<double>(right);
       }
-
       if (left.type() == typeid(std::string) && right.type() == typeid(std::string)) {
         return std::any_cast<std::string>(left) + std::any_cast<std::string>(right);
       }
+
       throw  lox_error::RunTimeError(expr->op_, "Operands must be two numbers or two strings.");
       
       case GREATER:
+        CheckNumberOperand(expr->op_, left, right);
         return std::any_cast<double>(left) > std::any_cast<double>(right);
       case GREATER_EQUAL:
+        CheckNumberOperand(expr->op_, left, right);
         return std::any_cast<double>(left) >= std::any_cast<double>(right);
       case LESS:
+        CheckNumberOperand(expr->op_, left, right);
         return std::any_cast<double>(left) < std::any_cast<double>(right);
       case LESS_EQUAL:
+        CheckNumberOperand(expr->op_, left, right);
         return std::any_cast<double>(left) <= std::any_cast<double>(right);
 
       case BANG_EQUAL:
@@ -245,7 +285,12 @@ std::any Interpreter::visit(CallExpr* expr)
   else if (callee.type() == typeid(LoxClass*)) {
     callable = std::any_cast<LoxClass*>(callee);
   }
-
+  else if (callee.type() == typeid(LoxCallableClock*)) {
+    callable = std::any_cast<LoxCallableClock*>(callee);
+  }
+  else if (callee.type() == typeid(LoxCallableConsoleHistory*)) {
+    callable = std::any_cast<LoxCallableConsoleHistory*>(callee);
+  }
   // TODO verify it works
   if (callable == nullptr) {
     throw  lox_error::RunTimeError(expr->paren_, "Can only call functions and classes.");
@@ -334,9 +379,9 @@ void Interpreter::visit(Print* stmt)
   std::string str = Stringify(value);
 
   // Added new line detection
-  std::string const result = std::regex_replace(str, std::regex("\\\\n"), "\n");
+  std::string const result = std::regex_replace(str, std::regex("\\\\n"), "\n") + "\n";
  
-  std::cout << result;
+  lox_console::print(result);
 }
 
 void Interpreter::visit(Var* stmt)
