@@ -15,26 +15,26 @@ namespace lox_error
 
   inline void Report(int line, std::string where, std::string& message)
   {
-    std::string msg =  "[line " + std::to_string(line) + "] " + "Error " + where + ": " + "\n";
+    std::string msg =  "[line " + std::to_string(line) + "] " + "Error" + where + ": " + message +"\n";
     lox_console::print(msg); 
     had_error = true;
   }
 
   inline void Report(int line, std::string where, const char* message)
   {
-    std::string msg = "[line " + std::to_string(line) + "] " + "Error " + where + ": " + "\n";
+    std::string msg = "[line " + std::to_string(line) + "] " + "Error" + where + ": " + message +"\n";
     lox_console::print(msg);
     had_error = true;
   }
 
-  inline void ReportRuntime(int line, const char* message) {
-    std::string msg = message + std::string("[line " + std::to_string(line) + "] ") + "\n";
+  inline void ReportRuntime(int line, std::string where, const char* message) {
+    std::string msg = std::string("error at '") + where + "': " + message + std::string("[line " + std::to_string(line) + "] ") + "\n";
     lox_console::print(msg);
     had_runtime_error = true;
   }
 
-  inline void ReportRuntime(int line, std::string& message) {
-    std::string msg = message + std::string("[line " + std::to_string(line) + "] ") + "\n";
+  inline void ReportRuntime(int line, std::string where, std::string message) {
+    std::string msg = "error at '" + where + "': " + message + std::string("[line " + std::to_string(line) + "] ") + "\n";
     lox_console::print(msg);
     had_runtime_error = true;
   }
@@ -89,7 +89,7 @@ namespace lox_error
     };
 
     inline void display() {
-      ReportRuntime(token_->line_, message_);
+      ReportRuntime(token_->line_, token_->lexeme_, message_);
     }
 
     const char* what() const throw () {

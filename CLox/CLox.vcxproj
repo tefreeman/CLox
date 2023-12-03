@@ -144,6 +144,7 @@
     <ClCompile Include="Resolver.cpp" />
     <ClCompile Include="Scanner.cpp" />
     <ClCompile Include="Stmt.cpp" />
+    <ClCompile Include="LoxTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AstPrinter.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="LoxTest.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="LoxTypes.h" />
+    <ClInclude Include="utility\StrFuncs.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="tests\classes.txt" />

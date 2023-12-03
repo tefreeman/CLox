@@ -220,7 +220,7 @@ Parser::Parser(std::vector<Token> tokens) {
 
   Stmt* Parser::ExpressionStatement() {
     Expr* expr = expression();
-    consume(SEMICOLON, "Expect ';' after value.");
+    consume(SEMICOLON, "Expect ';' after expression.");
     return new Expression(expr);
   }
 

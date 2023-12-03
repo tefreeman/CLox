@@ -89,7 +89,7 @@ void Lox::TestRunFile(const std::string& path) {
     Run(content);
 
 
-    test.test();
+    test.validate();
     test.printResults();
 
     lox_console::clear();
