@@ -6,6 +6,12 @@
 #include "Resolver.h"
 #include "LoxTest.h"
 #include "LoxConsole.h"
+#include <vector>
+#include <fstream>
+#include <cstdlib>
+#include <stdexcept>
+#include "Scanner.h"
+#include "Parser.h"
 
 void Lox::Run(const std::string& content) {
    Scanner scanner(content);

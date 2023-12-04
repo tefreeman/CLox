@@ -1,12 +1,6 @@
 #pragma once
 #include <iostream>
-#include <fstream>
 #include <string>
-#include <vector>
-#include <cstdlib>
-#include <stdexcept>
-#include "Scanner.h"
-#include "Parser.h"
 #include "Interpreter.h"
 
 class Lox
