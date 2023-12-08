@@ -1,6 +1,6 @@
 #include "LoxInstance.h"
 #include "LoxClass.h"
-#include "LoxError.h"
+#include "..\LoxError.h"
 #include "LoxFunction.h"
 
 LoxInstance::LoxInstance(LoxClass* klass) {

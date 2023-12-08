@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include "Token.h"
-#include "Stmt.h"
-#include "Expr.h"
+#include "objects/Stmt.h"
+#include "objects/Expr.h"
 #include "LoxError.h"
 #include "LoxTypes.h"
 

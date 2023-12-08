@@ -132,18 +132,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Environment.cpp" />
-    <ClCompile Include="Expr.cpp" />
     <ClCompile Include="Interpreter.cpp" />
     <ClCompile Include="Lox.cpp" />
-    <ClCompile Include="LoxCallable.cpp" />
-    <ClCompile Include="LoxClass.cpp" />
-    <ClCompile Include="LoxFunction.cpp" />
-    <ClCompile Include="LoxInstance.cpp" />
+    <ClCompile Include="objects\LoxCallable.cpp" />
+    <ClCompile Include="objects\LoxClass.cpp" />
+    <ClCompile Include="objects\LoxFunction.cpp" />
+    <ClCompile Include="objects\LoxInstance.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Resolver.cpp" />
     <ClCompile Include="Scanner.cpp" />
-    <ClCompile Include="Stmt.cpp" />
+    <ClCompile Include="objects\Stmt.cpp" />
     <ClCompile Include="LoxTest.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,24 +150,25 @@
     <ClInclude Include="LoxConsole.h" />
     <ClInclude Include="Environment.h" />
     <ClInclude Include="EnvironmentManager.h" />
-    <ClInclude Include="Expr.h" />
+    <ClInclude Include="objects\Expr.h" />
     <ClInclude Include="Interpreter.h" />
-    <ClInclude Include="LoxCallable.h" />
-    <ClInclude Include="LoxClass.h" />
+    <ClInclude Include="objects\LoxCallable.h" />
+    <ClInclude Include="objects\LoxClass.h" />
     <ClInclude Include="LoxError.h" />
     <ClInclude Include="Lox.h" />
-    <ClInclude Include="LoxFunction.h" />
-    <ClInclude Include="LoxInstance.h" />
+    <ClInclude Include="objects\LoxFunction.h" />
+    <ClInclude Include="objects\LoxInstance.h" />
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Resolver.h" />
     <ClInclude Include="Scanner.h" />
-    <ClInclude Include="Stmt.h" />
+    <ClInclude Include="objects\Stmt.h" />
     <ClInclude Include="LoxTest.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="LoxTypes.h" />
     <ClInclude Include="utility\StrFuncs.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="out.txt" />
     <Text Include="tests\classes.txt" />
     <Text Include="tests\fib.txt" />
   </ItemGroup>
