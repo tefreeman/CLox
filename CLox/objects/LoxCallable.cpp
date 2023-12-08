@@ -1,11 +1,11 @@
 #pragma once
 #include "LoxCallable.h"
-#include "Interpreter.h"
+#include "..\Interpreter.h"
 #include <vector>
 #include <chrono>
 #include <any>
-#include "LoxConsole.h"
-#include "LoxError.h"
+#include "..\LoxConsole.h"
+#include "..\LoxError.h"
 
   int LoxCallableClock::arity() {
     return 0;

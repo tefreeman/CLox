@@ -1,9 +1,9 @@
 #include "Parser.h"
 #include "Token.h"
-#include "Expr.h"
+#include "objects/Expr.h"
 #include <vector>
 #include "LoxError.h"
-#include "Stmt.h"
+#include "objects/Stmt.h"
 
 using namespace lox_types;
 

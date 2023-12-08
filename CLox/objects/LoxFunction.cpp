@@ -1,6 +1,6 @@
 #include "LoxFunction.h"
-#include "Environment.h"
-#include "LoxError.h"
+#include "..\Environment.h"
+#include "..\LoxError.h"
 #include <exception>
 #include <string>
 #include "LoxInstance.h"

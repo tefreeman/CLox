@@ -1,11 +1,11 @@
 #include "Interpreter.h"
 #include "LoxTypes.h"
 #include"LoxError.h"
-#include "LoxCallable.h"
-#include "LoxFunction.h"
+#include "objects\LoxCallable.h"
+#include "objects\LoxFunction.h"
 #include "EnvironmentManager.h"
-#include "LoxClass.h"
-#include "LoxInstance.h"
+#include "objects\LoxClass.h"
+#include "objects\LoxInstance.h"
 #include <any>
 #include <regex>
 #include "LoxConsole.h"

@@ -1,6 +1,6 @@
 #pragma once
 #include <any>
-#include "Interpreter.h"
+#include "..\Interpreter.h"
 #include <vector>
 class LoxCallable {
   public:
