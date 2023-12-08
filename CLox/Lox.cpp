@@ -73,7 +73,7 @@ void Lox::RunFile(const std::string& path) {
     }
 }
 
-void Lox::TestRunFile(const std::string& path) {
+void Lox::TestRunFile(const std::string& path, bool redirectOutput) {
   std::ifstream file(path, std::ios::binary | std::ios::ate);
 
   if (!file.is_open()) {
@@ -88,7 +88,7 @@ void Lox::TestRunFile(const std::string& path) {
   if (file.read(buffer.data(), size)) {
     std::string content(buffer.begin(), buffer.end());
     std::string filename = path.substr(path.find_last_of("/\\")+ 1);
-    LoxTest test = LoxTest(path , content);
+    LoxTest test = LoxTest(path , content, redirectOutput);
     
     test.printStart();
 

@@ -1,45 +1,56 @@
-  #include <iostream>
+#include "AstPrinter.h"
+#include "Lox.h"
+#include <cstdlib>
+#include <filesystem>
 #include <fstream>
+#include <iostream>
+#include <stdexcept>
 #include <string>
 #include <vector>
-#include <cstdlib>
-#include <stdexcept>
-#include "Lox.h"
-#include "AstPrinter.h"
-#include <filesystem>
+
+#define TEST_FOLDER "\\tests"
+#define FILE_EXTENSION ".lox"
+#define REDIRECT_TO_OUT_FILE false
+
+
 
 int main(int argc, char* argv[]) {
-  
-    Lox lox = Lox();
 
-    if (argc > 2) {
-        std::cout << "Usage: lox [script]" << std::endl;
-        std::exit(64);
-    }
-    else if (argc == 2) {
-          if (strcmp(argv[1], "-test") == 0) {
-          // do test
-            std::filesystem::path cwd = std::filesystem::current_path();
-            std::string path = cwd.string() + "/tests";
+  if (REDIRECT_TO_OUT_FILE)
+  {
+    std::locale::global(std::locale("en_US.UTF-8"));
+    std::ofstream out("out.txt");
+    auto* coutbuf = std::cout.rdbuf();
+    std::cout.rdbuf(out.rdbuf());
+  }
 
-            std::filesystem::recursive_directory_iterator it(path);
+  Lox lox = Lox();
 
-            for (auto& p : it) {
-              if (p.path().extension() == ".lox") {
-                lox.TestRunFile(p.path().string());
-              }
-            }
-            }
-          else if (strcmp(argv[1], "-debug") == 0) {
-            lox.debug_mode_ = true;
-            lox.RunPrompt();
-          } else {
-          lox.RunFile(argv[1]);
+  if (argc > 2) {
+    std::cout << "Usage: lox [script]" << std::endl;
+    std::exit(64);
+  }
+  else if (argc == 2) {
+    if (strcmp(argv[1], "-test") == 0) {
+      // do test
+      std::filesystem::path cwd = std::filesystem::current_path();
+      std::string path = cwd.string() + TEST_FOLDER;
+
+      std::filesystem::recursive_directory_iterator it(path);
+
+      for (auto& p : it) {
+        if (p.path().extension() == FILE_EXTENSION) {
+          lox.TestRunFile(p.path().string(), REDIRECT_TO_OUT_FILE);
         }
+      }
     }
     else {
-        lox.RunPrompt();
+      lox.RunFile(argv[1]);
     }
-    
-    return 0;
+  }
+  else {
+    lox.RunPrompt();
+  }
+
+  return 0;
 }

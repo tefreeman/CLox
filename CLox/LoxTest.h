@@ -12,6 +12,7 @@ private:
   int failedTests_ = 0;
   bool didTestsRun_ = false;
   bool expectedNothing_ = false;
+  bool redirectOutput_ = false;
   std::string testName_;
 
 
@@ -21,7 +22,7 @@ private:
   void extractExpectedOutputs(std::string& testText);
 
   public:
-    LoxTest(std::string name, std::string& text);
+    LoxTest(std::string name, std::string& text, bool redirectOutput);
     
 
     void printResults();

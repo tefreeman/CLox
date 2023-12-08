@@ -20,18 +20,7 @@ namespace lox_error
     had_error = true;
   }
 
-  inline void Report(int line, std::string where, const char* message)
-  {
-    std::string msg = "[line " + std::to_string(line) + "] " + "Error" + where + ": " + message +"\n";
-    lox_console::print(msg);
-    had_error = true;
-  }
 
-  inline void ReportRuntime(int line, std::string where, const char* message) {
-    std::string msg = std::string("error at '") + where + "': " + message + std::string("[line " + std::to_string(line) + "] ") + "\n";
-    lox_console::print(msg);
-    had_runtime_error = true;
-  }
 
   inline void ReportRuntime(int line, std::string where, std::string message) {
     std::string msg = "error at '" + where + "': " + message + std::string("[line " + std::to_string(line) + "] ") + "\n";
@@ -45,7 +34,7 @@ namespace lox_error
   }
 
 
-  inline void Error(Token* token, const char* message)
+  inline void Error(Token* token, std::string message)
   {
     if (token->type_ == lox_types::END_OF_FILE) {
       Report(token->line_, " at end", message);
@@ -58,10 +47,10 @@ namespace lox_error
   class ParseError : public std::exception {
     private:
       Token* token_;
-      const char* message_;
+      std::string message_;
 
     public:
-      inline ParseError(Token* token, const char* message): std::exception(message)  {
+      inline ParseError(Token* token, std::string message): std::exception(message.c_str())  {
         token_ = token;
         message_ = message;
       };
@@ -83,7 +72,7 @@ namespace lox_error
     std::string message_;
 
   public:
-    inline RunTimeError(Token* token, const char* message) : std::exception(message) {
+    inline RunTimeError(Token* token, std::string message) : std::exception(message.c_str()) {
       token_ = token;
       message_ = std::string(message);
     };
@@ -103,7 +92,7 @@ namespace lox_error
   
   public:
     std::any value_;
-    inline ReturnException(std::any& value, const char* message) : std::exception(message) {
+    inline ReturnException(std::any& value, std::string message) : std::exception(message.c_str()) {
     value_ = value;
     }
 
