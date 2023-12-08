@@ -1,12 +1,12 @@
-#include "LoxTest.h"
-#include <regex>
-#include <algorithm>
-#include "utility/StrFuncs.h"
 #include "LoxConsole.h"
+#include "LoxTest.h"
+#include "utility/StrFuncs.h"
+#include <algorithm>
+#include <regex>
 // a = expected, b == actual
 
 using namespace util;
- bool LoxTest::IsEquivalent(std::string& expected, std::string& consoleOutput) {
+bool LoxTest::IsEquivalent(std::string& expected, std::string& consoleOutput) {
   trim(expected);
   trim(consoleOutput);
   // to lower 
@@ -56,7 +56,7 @@ using namespace util;
     }
     // else remove the line number [line x] clause
     consoleOutput = removeLineTags(consoleOutput);
-    
+
     std::string onlyExpectedErrorMsg = getTextAfterChar(expected, ':');
     trim(onlyExpectedErrorMsg);
 
@@ -68,7 +68,7 @@ using namespace util;
   return false;
 }
 
- bool LoxTest::parseTestFile(std::string& comment, std::string find_str, bool doRemove) {
+bool LoxTest::parseTestFile(std::string& comment, std::string find_str, bool doRemove) {
 
   std::size_t found = comment.find(find_str);
   std::string expected;
@@ -114,32 +114,52 @@ void LoxTest::extractExpectedOutputs(std::string& testText) {
   }
 }
 
- LoxTest::LoxTest(std::string name, std::string& text) {
+LoxTest::LoxTest(std::string name, std::string& text, bool redirectOutput) {
   testName_ = name;
   extractExpectedOutputs(text);
-
+  redirectOutput_ = redirectOutput;
 }
 
- void LoxTest::printResults() {
+void LoxTest::printResults() {
   if (!didTestsRun_) {
-    std::cout << ansi::foreground_red << "No tests run!" << ansi::reset << std::endl;
+    if (!redirectOutput_)
+      std::cout << ansi::foreground_red;
+
+    std::cout << "No tests run!" << std::endl;
+
+    if (!redirectOutput_)
+      std::cout << ansi::reset;
     return;
   }
 
   if (failedTests_ == 0) {
-    std::cout << ansi::foreground_green << expectedOutputs_.size() << "/" << expectedOutputs_.size() << " Test passed!" << ansi::reset << std::endl;
+    if (!redirectOutput_)
+      std::cout << ansi::foreground_green;
+
+    std::cout << expectedOutputs_.size() << "/" << expectedOutputs_.size() << " Test passed!" << std::endl;
+
+    if (!redirectOutput_)
+      std::cout << ansi::reset;
   }
   else {
-    std::cout << ansi::foreground_red << expectedOutputs_.size() << "/" << failedTests_ << " Test failed!" << ansi::reset << std::endl;
+
+    if (!redirectOutput_)
+      std::cout << ansi::foreground_red;
+
+    std::cout << expectedOutputs_.size() << "/" << failedTests_ << " Test failed!" << std::endl;
+
+    if (!redirectOutput_)
+      std::cout << ansi::reset;
+
   }
 }
 
- void LoxTest::printStart() {
+void LoxTest::printStart() {
   std::cout << "----------------------------------------------------" << std::endl;
   std::cout << "Running " << testName_ << " Tests " << std::endl;
 }
 
- void LoxTest::validate() {
+void LoxTest::validate() {
   // For test files that expect nothing to happen flagged via //  ~NOTHING~
   if (expectedNothing_) {
     didTestsRun_ = true;
@@ -147,12 +167,26 @@ void LoxTest::extractExpectedOutputs(std::string& testText) {
   }
 
   if (expectedOutputs_.size() == 0) {
-    std::cout << ansi::foreground_red << "No expected values found!" << ansi::reset << std::endl;
+    if (!redirectOutput_)
+      std::cout << ansi::foreground_red;
+
+    std::cout << "No expected values found!" << std::endl;
+
+    if (!redirectOutput_)
+      std::cout << ansi::reset;
     return;
   }
   //  console history is 1 longer than expected because of the prompt
   if (expectedOutputs_.size() != lox_console::_console_history.size() - 1) {
-    std::cout << ansi::foreground_red << "Cannot Parse " << testName_ << ": " << " Each print needs an '// expect: value'  |  Detected:  " << lox_console::_console_history.size() - 1 << "/" << expectedOutputs_.size() << "." << ansi::reset << std::endl;
+    if (!redirectOutput_)
+      std::cout << ansi::foreground_red;
+
+    std::cout << "Cannot Parse " << testName_ << ": " << " Each print needs an '// expect: value'  |";
+    std::cout << " Detected:  " << lox_console::_console_history.size() - 1 << "/" << expectedOutputs_.size() << "." << std::endl;
+
+    if (!redirectOutput_)
+      std::cout << ansi::reset;
+
     return;
   }
 
@@ -163,12 +197,29 @@ void LoxTest::extractExpectedOutputs(std::string& testText) {
     std::string actual = lox_console::get(i);
     if (!IsEquivalent(expected, actual)) {
       failedTests_++;
-      std::cout << ansi::foreground_red;
+
+      if (!redirectOutput_)
+        std::cout << ansi::foreground_red;
+
       std::cout << "Test failed:   ";
       std::cout << "Expected: " << expected;
       std::cout << "  Actual: " << actual;
-      std::cout << ansi::reset << std::endl;
-    }
-  }
 
+      if (!redirectOutput_)
+        std::cout << ansi::reset << std::endl;
+    }
+    else {
+
+      if (!redirectOutput_)
+        std::cout << ansi::foreground_green;
+
+      std::cout << "Test passed:   ";
+      std::cout << "Expected: " << expected;
+      std::cout << "  Actual: " << actual << std::endl;
+
+      if (!redirectOutput_)
+        std::cout << ansi::reset;
+    }
+
+  }
 }

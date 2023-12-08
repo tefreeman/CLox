@@ -1,0 +1,1864 @@
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\associativity.lox Tests
+c
+c
+c
+Test passed:   Expected: c  Actual: c
+Test passed:   Expected: c  Actual: c
+Test passed:   Expected: c  Actual: c
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\global.lox Tests
+before
+after
+arg
+arg
+Test passed:   Expected: before  Actual: before
+Test passed:   Expected: after  Actual: after
+Test passed:   Expected: arg  Actual: arg
+Test passed:   Expected: arg  Actual: arg
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\grouping.lox Tests
+[line 2] Error at '=': Invalid assignment target.
+Test passed:   Expected: error at '=': invalid assignment target.  Actual:  error at '=': invalid assignment target.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\infix_operator.lox Tests
+[line 3] Error at '=': Invalid assignment target.
+Test passed:   Expected: error at '=': invalid assignment target.  Actual:  error at '=': invalid assignment target.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\local.lox Tests
+before
+after
+arg
+arg
+Test passed:   Expected: before  Actual: before
+Test passed:   Expected: after  Actual: after
+Test passed:   Expected: arg  Actual: arg
+Test passed:   Expected: arg  Actual: arg
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\prefix_operator.lox Tests
+[line 2] Error at '=': Invalid assignment target.
+Test passed:   Expected: error at '=': invalid assignment target.  Actual:  error at '=': invalid assignment target.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\syntax.lox Tests
+var
+var
+Test passed:   Expected: var  Actual: var
+Test passed:   Expected: var  Actual: var
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\to_this.lox Tests
+[line 3] Error at '=': Invalid assignment target.
+Test passed:   Expected: error at '=': invalid assignment target.  Actual:  error at '=': invalid assignment target.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\assignment\undefined.lox Tests
+error at 'unknown': Undefined variable 'unknown'.[line 1]
+Test passed:   Expected: error: undefined variable 'unknown'.  Actual: error at 'unknown': undefined variable 'unknown'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\block\empty.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\block\scope.lox Tests
+inner
+outer
+Test passed:   Expected: inner  Actual: inner
+Test passed:   Expected: outer  Actual: outer
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\bool\equality.lox Tests
+1
+0
+0
+1
+0
+0
+0
+0
+0
+0
+1
+1
+0
+1
+1
+1
+1
+1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+18/18 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\bool\not.lox Tests
+0
+1
+1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\call\bool.lox Tests
+error at ')': Can only call functions and classes.[line 1]
+Test passed:   Expected: error: can only call functions and classes.  Actual: error at ')': can only call functions and classes.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\call\nil.lox Tests
+error at ')': Can only call functions and classes.[line 1]
+Test passed:   Expected: error: can only call functions and classes.  Actual: error at ')': can only call functions and classes.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\call\num.lox Tests
+error at ')': Can only call functions and classes.[line 1]
+Test passed:   Expected: error: can only call functions and classes.  Actual: error at ')': can only call functions and classes.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\call\object.lox Tests
+error at ')': Can only call functions and classes.[line 4]
+Test passed:   Expected: error: can only call functions and classes.  Actual: error at ')': can only call functions and classes.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\call\string.lox Tests
+error at ')': Can only call functions and classes.[line 1]
+Test passed:   Expected: error: can only call functions and classes.  Actual: error at ')': can only call functions and classes.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\class\empty.lox Tests
+Foo
+Test passed:   Expected: foo  Actual: foo
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\class\inherited_method.lox Tests
+in foo
+in bar
+in baz
+Test passed:   Expected: in foo  Actual: in foo
+Test passed:   Expected: in bar  Actual: in bar
+Test passed:   Expected: in baz  Actual: in baz
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\class\inherit_self.lox Tests
+error at 'Foo': A class can't inherit from itself.[line 1]
+Test passed:   Expected: error at 'foo': a class can't inherit from itself.  Actual: error at 'foo': a class can't inherit from itself.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\class\local_inherit_other.lox Tests
+B
+Test passed:   Expected: b  Actual: b
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\class\local_inherit_self.lox Tests
+error at 'Foo': A class can't inherit from itself.[line 2]
+Test passed:   Expected: error at 'foo': a class can't inherit from itself.  Actual: error at 'foo': a class can't inherit from itself.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\class\local_reference_self.lox Tests
+Foo
+Test passed:   Expected: foo  Actual: foo
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\class\reference_self.lox Tests
+Foo
+Test passed:   Expected: foo  Actual: foo
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\assign_to_closure.lox Tests
+local
+after f
+after f
+after g
+Test passed:   Expected: local  Actual: local
+Test passed:   Expected: after f  Actual: after f
+Test passed:   Expected: after f  Actual: after f
+Test passed:   Expected: after g  Actual: after g
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\assign_to_shadowed_later.lox Tests
+inner
+assigned
+Test passed:   Expected: inner  Actual: inner
+Test passed:   Expected: assigned  Actual: assigned
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\closed_closure_in_function.lox Tests
+local
+Test passed:   Expected: local  Actual: local
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\close_over_function_parameter.lox Tests
+param
+Test passed:   Expected: param  Actual: param
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\close_over_later_variable.lox Tests
+b
+a
+Test passed:   Expected: b  Actual: b
+Test passed:   Expected: a  Actual: a
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\close_over_method_parameter.lox Tests
+param
+Test passed:   Expected: param  Actual: param
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\nested_closure.lox Tests
+a
+b
+c
+Test passed:   Expected: a  Actual: a
+Test passed:   Expected: b  Actual: b
+Test passed:   Expected: c  Actual: c
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\open_closure_in_function.lox Tests
+local
+Test passed:   Expected: local  Actual: local
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\reference_closure_multiple_times.lox Tests
+a
+a
+Test passed:   Expected: a  Actual: a
+Test passed:   Expected: a  Actual: a
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\reuse_closure_slot.lox Tests
+a
+Test passed:   Expected: a  Actual: a
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\shadow_closure_with_local.lox Tests
+closure
+shadow
+closure
+Test passed:   Expected: closure  Actual: closure
+Test passed:   Expected: shadow  Actual: shadow
+Test passed:   Expected: closure  Actual: closure
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\unused_closure.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\closure\unused_later_closure.lox Tests
+a
+Test passed:   Expected: a  Actual: a
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\comments\line_at_eof.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\comments\only_line_comment.lox Tests
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\comments\only_line_comment_and_line.lox Tests
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\comments\unicode.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\arguments.lox Tests
+init
+1.000000
+2.000000
+Test passed:   Expected: init  Actual: init
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\call_init_early_return.lox Tests
+init
+init
+Foo instance
+Test passed:   Expected: init  Actual: init
+Test passed:   Expected: init  Actual: init
+Test passed:   Expected: foo instance  Actual: foo instance
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\call_init_explicitly.lox Tests
+Foo.init(one)
+Foo.init(two)
+Foo instance
+init
+Test passed:   Expected: foo.init(one)  Actual: foo.init(one)
+Test passed:   Expected: foo.init(two)  Actual: foo.init(two)
+Test passed:   Expected: foo instance  Actual: foo instance
+Test passed:   Expected: init  Actual: init
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\default.lox Tests
+Foo instance
+Test passed:   Expected: foo instance  Actual: foo instance
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\default_arguments.lox Tests
+error at ')': Expected 0 arguments but got 3.[line 3]
+Test passed:   Expected: error: expected 0 arguments but got 3.  Actual: error at ')': expected 0 arguments but got 3.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\early_return.lox Tests
+init
+Foo instance
+Test passed:   Expected: init  Actual: init
+Test passed:   Expected: foo instance  Actual: foo instance
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\extra_arguments.lox Tests
+error at ')': Expected 2 arguments but got 4.[line 8]
+Test passed:   Expected: error: expected 2 arguments but got 4.  Actual: error at ')': expected 2 arguments but got 4.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\init_not_method.lox Tests
+not initializer
+Test passed:   Expected: not initializer  Actual: not initializer
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\missing_arguments.lox Tests
+error at ')': Expected 2 arguments but got 1.[line 5]
+Test passed:   Expected: error: expected 2 arguments but got 1.  Actual: error at ')': expected 2 arguments but got 1.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\return_in_nested_function.lox Tests
+bar
+Foo instance
+Test passed:   Expected: bar  Actual: bar
+Test passed:   Expected: foo instance  Actual: foo instance
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\constructor\return_value.lox Tests
+error at 'return': Can't return a value from an initializer.[line 3]
+Test passed:   Expected: error at 'return': can't return a value from an initializer.  Actual: error at 'return': can't return a value from an initializer.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\empty_file.lox Tests
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\call_function_field.lox Tests
+bar
+1.000000
+2.000000
+Test passed:   Expected: bar  Actual: bar
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\call_nonfunction_field.lox Tests
+error at ')': Can only call functions and classes.[line 6]
+Test passed:   Expected: error: can only call functions and classes.  Actual: error at ')': can only call functions and classes.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\get_and_set_method.lox Tests
+other
+1.000000
+method
+2.000000
+Test passed:   Expected: other  Actual: other
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: method  Actual: method
+Test passed:   Expected: 2  Actual: 2.000000
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\get_on_bool.lox Tests
+error at 'foo': Only instances have properties.[line 1]
+Test passed:   Expected: error: only instances have properties.  Actual: error at 'foo': only instances have properties.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\get_on_class.lox Tests
+error at 'bar': Only instances have properties.[line 2]
+Test passed:   Expected: error: only instances have properties.  Actual: error at 'bar': only instances have properties.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\get_on_function.lox Tests
+error at 'bar': Only instances have properties.[line 3]
+Test passed:   Expected: error: only instances have properties.  Actual: error at 'bar': only instances have properties.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\get_on_nil.lox Tests
+error at 'foo': Only instances have properties.[line 1]
+Test passed:   Expected: error: only instances have properties.  Actual: error at 'foo': only instances have properties.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\get_on_num.lox Tests
+error at 'foo': Only instances have properties.[line 1]
+Test passed:   Expected: error: only instances have properties.  Actual: error at 'foo': only instances have properties.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\get_on_string.lox Tests
+error at 'foo': Only instances have properties.[line 1]
+Test passed:   Expected: error: only instances have properties.  Actual: error at 'foo': only instances have properties.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\many.lox Tests
+apple
+apricot
+avocado
+banana
+bilberry
+blackberry
+blackcurrant
+blueberry
+boysenberry
+cantaloupe
+cherimoya
+cherry
+clementine
+cloudberry
+coconut
+cranberry
+currant
+damson
+date
+dragonfruit
+durian
+elderberry
+feijoa
+fig
+gooseberry
+grape
+grapefruit
+guava
+honeydew
+huckleberry
+jabuticaba
+jackfruit
+jambul
+jujube
+juniper
+kiwifruit
+kumquat
+lemon
+lime
+longan
+loquat
+lychee
+mandarine
+mango
+marionberry
+melon
+miracle
+mulberry
+nance
+nectarine
+olive
+orange
+papaya
+passionfruit
+peach
+pear
+persimmon
+physalis
+pineapple
+plantain
+plum
+plumcot
+pomegranate
+pomelo
+quince
+raisin
+rambutan
+raspberry
+redcurrant
+salak
+salmonberry
+satsuma
+strawberry
+tamarillo
+tamarind
+tangerine
+tomato
+watermelon
+yuzu
+Test passed:   Expected: apple  Actual: apple
+Test passed:   Expected: apricot  Actual: apricot
+Test passed:   Expected: avocado  Actual: avocado
+Test passed:   Expected: banana  Actual: banana
+Test passed:   Expected: bilberry  Actual: bilberry
+Test passed:   Expected: blackberry  Actual: blackberry
+Test passed:   Expected: blackcurrant  Actual: blackcurrant
+Test passed:   Expected: blueberry  Actual: blueberry
+Test passed:   Expected: boysenberry  Actual: boysenberry
+Test passed:   Expected: cantaloupe  Actual: cantaloupe
+Test passed:   Expected: cherimoya  Actual: cherimoya
+Test passed:   Expected: cherry  Actual: cherry
+Test passed:   Expected: clementine  Actual: clementine
+Test passed:   Expected: cloudberry  Actual: cloudberry
+Test passed:   Expected: coconut  Actual: coconut
+Test passed:   Expected: cranberry  Actual: cranberry
+Test passed:   Expected: currant  Actual: currant
+Test passed:   Expected: damson  Actual: damson
+Test passed:   Expected: date  Actual: date
+Test passed:   Expected: dragonfruit  Actual: dragonfruit
+Test passed:   Expected: durian  Actual: durian
+Test passed:   Expected: elderberry  Actual: elderberry
+Test passed:   Expected: feijoa  Actual: feijoa
+Test passed:   Expected: fig  Actual: fig
+Test passed:   Expected: gooseberry  Actual: gooseberry
+Test passed:   Expected: grape  Actual: grape
+Test passed:   Expected: grapefruit  Actual: grapefruit
+Test passed:   Expected: guava  Actual: guava
+Test passed:   Expected: honeydew  Actual: honeydew
+Test passed:   Expected: huckleberry  Actual: huckleberry
+Test passed:   Expected: jabuticaba  Actual: jabuticaba
+Test passed:   Expected: jackfruit  Actual: jackfruit
+Test passed:   Expected: jambul  Actual: jambul
+Test passed:   Expected: jujube  Actual: jujube
+Test passed:   Expected: juniper  Actual: juniper
+Test passed:   Expected: kiwifruit  Actual: kiwifruit
+Test passed:   Expected: kumquat  Actual: kumquat
+Test passed:   Expected: lemon  Actual: lemon
+Test passed:   Expected: lime  Actual: lime
+Test passed:   Expected: longan  Actual: longan
+Test passed:   Expected: loquat  Actual: loquat
+Test passed:   Expected: lychee  Actual: lychee
+Test passed:   Expected: mandarine  Actual: mandarine
+Test passed:   Expected: mango  Actual: mango
+Test passed:   Expected: marionberry  Actual: marionberry
+Test passed:   Expected: melon  Actual: melon
+Test passed:   Expected: miracle  Actual: miracle
+Test passed:   Expected: mulberry  Actual: mulberry
+Test passed:   Expected: nance  Actual: nance
+Test passed:   Expected: nectarine  Actual: nectarine
+Test passed:   Expected: olive  Actual: olive
+Test passed:   Expected: orange  Actual: orange
+Test passed:   Expected: papaya  Actual: papaya
+Test passed:   Expected: passionfruit  Actual: passionfruit
+Test passed:   Expected: peach  Actual: peach
+Test passed:   Expected: pear  Actual: pear
+Test passed:   Expected: persimmon  Actual: persimmon
+Test passed:   Expected: physalis  Actual: physalis
+Test passed:   Expected: pineapple  Actual: pineapple
+Test passed:   Expected: plantain  Actual: plantain
+Test passed:   Expected: plum  Actual: plum
+Test passed:   Expected: plumcot  Actual: plumcot
+Test passed:   Expected: pomegranate  Actual: pomegranate
+Test passed:   Expected: pomelo  Actual: pomelo
+Test passed:   Expected: quince  Actual: quince
+Test passed:   Expected: raisin  Actual: raisin
+Test passed:   Expected: rambutan  Actual: rambutan
+Test passed:   Expected: raspberry  Actual: raspberry
+Test passed:   Expected: redcurrant  Actual: redcurrant
+Test passed:   Expected: salak  Actual: salak
+Test passed:   Expected: salmonberry  Actual: salmonberry
+Test passed:   Expected: satsuma  Actual: satsuma
+Test passed:   Expected: strawberry  Actual: strawberry
+Test passed:   Expected: tamarillo  Actual: tamarillo
+Test passed:   Expected: tamarind  Actual: tamarind
+Test passed:   Expected: tangerine  Actual: tangerine
+Test passed:   Expected: tomato  Actual: tomato
+Test passed:   Expected: watermelon  Actual: watermelon
+Test passed:   Expected: yuzu  Actual: yuzu
+79/79 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\method.lox Tests
+got method
+arg
+Test passed:   Expected: got method  Actual: got method
+Test passed:   Expected: arg  Actual: arg
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\method_binds_this.lox Tests
+foo1
+1.000000
+Test passed:   Expected: foo1  Actual: foo1
+Test passed:   Expected: 1  Actual: 1.000000
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\on_instance.lox Tests
+bar value
+baz value
+bar value
+baz value
+Test passed:   Expected: bar value  Actual: bar value
+Test passed:   Expected: baz value  Actual: baz value
+Test passed:   Expected: bar value  Actual: bar value
+Test passed:   Expected: baz value  Actual: baz value
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\set_evaluation_order.lox Tests
+error at 'undefined1': Undefined variable 'undefined1'.[line 1]
+Test passed:   Expected: error: undefined variable 'undefined1'.  Actual: error at 'undefined1': undefined variable 'undefined1'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\set_on_bool.lox Tests
+error at 'foo': Only instances have fields.[line 1]
+Test passed:   Expected: error: only instances have fields.  Actual: error at 'foo': only instances have fields.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\set_on_class.lox Tests
+error at 'bar': Only instances have fields.[line 2]
+Test passed:   Expected: error: only instances have fields.  Actual: error at 'bar': only instances have fields.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\set_on_function.lox Tests
+error at 'bar': Only instances have fields.[line 3]
+Test passed:   Expected: error: only instances have fields.  Actual: error at 'bar': only instances have fields.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\set_on_nil.lox Tests
+error at 'foo': Only instances have fields.[line 1]
+Test passed:   Expected: error: only instances have fields.  Actual: error at 'foo': only instances have fields.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\set_on_num.lox Tests
+error at 'foo': Only instances have fields.[line 1]
+Test passed:   Expected: error: only instances have fields.  Actual: error at 'foo': only instances have fields.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\set_on_string.lox Tests
+error at 'foo': Only instances have fields.[line 1]
+Test passed:   Expected: error: only instances have fields.  Actual: error at 'foo': only instances have fields.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\field\undefined.lox Tests
+error at 'bar': Undefined property 'bar'.[line 4]
+Test passed:   Expected: error: undefined property 'bar'.  Actual: error at 'bar': undefined property 'bar'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\class_in_body.lox Tests
+[line 2] Error at 'class': Expect expression.
+Test passed:   Expected: error at 'class': expect expression.  Actual:  error at 'class': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\closure_in_body.lox Tests
+4.000000
+1.000000
+4.000000
+2.000000
+4.000000
+3.000000
+Test passed:   Expected: 4  Actual: 4.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 4  Actual: 4.000000
+Test passed:   Expected: 2  Actual: 2.000000
+Test passed:   Expected: 4  Actual: 4.000000
+Test passed:   Expected: 3  Actual: 3.000000
+6/6 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\fun_in_body.lox Tests
+[line 2] Error at 'fun': Expect expression.
+Test passed:   Expected: error at 'fun': expect expression.  Actual:  error at 'fun': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\return_closure.lox Tests
+i
+Test passed:   Expected: i  Actual: i
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\return_inside.lox Tests
+i
+Test passed:   Expected: i  Actual: i
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\scope.lox Tests
+0.000000
+-1.000000
+after
+0.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: -1  Actual: -1.000000
+Test passed:   Expected: after  Actual: after
+Test passed:   Expected: 0  Actual: 0.000000
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\statement_condition.lox Tests
+[line 3] Error at '{': Expect expression.
+[line 3] Error at ')': Expect ';' after expression.
+Test passed:   Expected: error at '{': expect expression.  Actual:  error at '{': expect expression.
+Test passed:   Expected: error at ')': expect ';' after expression.  Actual:  error at ')': expect ';' after expression.
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\statement_increment.lox Tests
+[line 2] Error at '{': Expect expression.
+Test passed:   Expected: error at '{': expect expression.  Actual:  error at '{': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\statement_initializer.lox Tests
+[line 3] Error at '{': Expect expression.
+[line 3] Error at ')': Expect ';' after expression.
+Test passed:   Expected: error at '{': expect expression.  Actual:  error at '{': expect expression.
+Test passed:   Expected: error at ')': expect ';' after expression.  Actual:  error at ')': expect ';' after expression.
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\syntax.lox Tests
+1.000000
+2.000000
+3.000000
+0.000000
+1.000000
+2.000000
+done
+0.000000
+1.000000
+0.000000
+1.000000
+2.000000
+0.000000
+1.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+Test passed:   Expected: 3  Actual: 3.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+Test passed:   Expected: done  Actual: done
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 1  Actual: 1.000000
+14/14 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\for\var_in_body.lox Tests
+[line 2] Error at 'var': Expect expression.
+Test passed:   Expected: error at 'var': expect expression.  Actual:  error at 'var': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\body_must_be_block.lox Tests
+[line 2] Error at '123': Expect '{' before function body.
+Test passed:   Expected: error at '123': expect '{' before function body.  Actual:  error at '123': expect '{' before function body.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\empty_body.lox Tests
+nil
+Test passed:   Expected: nil  Actual: nil
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\extra_arguments.lox Tests
+error at ')': Expected 2 arguments but got 4.[line 6]
+Test passed:   Expected: error: expected 2 arguments but got 4.  Actual: error at ')': expected 2 arguments but got 4.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\local_mutual_recursion.lox Tests
+error at 'isOdd': Undefined variable 'isOdd'.[line 4]
+Test passed:   Expected: error: undefined variable 'isodd'.  Actual: error at 'isodd': undefined variable 'isodd'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\local_recursion.lox Tests
+21.000000
+Test passed:   Expected: 21  Actual: 21.000000
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\missing_arguments.lox Tests
+error at ')': Expected 2 arguments but got 1.[line 3]
+Test passed:   Expected: error: expected 2 arguments but got 1.  Actual: error at ')': expected 2 arguments but got 1.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\missing_comma_in_parameters.lox Tests
+[line 2] Error at 'c': Expect ')' after parameters.
+Test passed:   Expected: error at 'c': expect ')' after parameters.  Actual:  error at 'c': expect ')' after parameters.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\mutual_recursion.lox Tests
+1
+1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\nested_call_with_arguments.lox Tests
+hello world
+Test passed:   Expected: hello world  Actual: hello world
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\parameters.lox Tests
+0.000000
+1.000000
+3.000000
+6.000000
+10.000000
+15.000000
+21.000000
+28.000000
+36.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 3  Actual: 3.000000
+Test passed:   Expected: 6  Actual: 6.000000
+Test passed:   Expected: 10  Actual: 10.000000
+Test passed:   Expected: 15  Actual: 15.000000
+Test passed:   Expected: 21  Actual: 21.000000
+Test passed:   Expected: 28  Actual: 28.000000
+Test passed:   Expected: 36  Actual: 36.000000
+9/9 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\print.lox Tests
+<fn foo>
+<native fn>
+Test passed:   Expected: <fn foo>  Actual: <fn foo>
+Test passed:   Expected: <native fn>  Actual: <native fn>
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\recursion.lox Tests
+21.000000
+Test passed:   Expected: 21  Actual: 21.000000
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\too_many_arguments.lox Tests
+[line 260] Error at 'a': Can't have more than 255 arguments.
+Test passed:   Expected: error at 'a': can't have more than 255 arguments.  Actual:  error at 'a': can't have more than 255 arguments.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\function\too_many_parameters.lox Tests
+[line 257] Error at 'a': Can't have more than 255 parameters.
+Test passed:   Expected: error at 'a': can't have more than 255 parameters.  Actual:  error at 'a': can't have more than 255 parameters.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\class_in_else.lox Tests
+[line 2] Error at 'class': Expect expression.
+Test passed:   Expected: error at 'class': expect expression.  Actual:  error at 'class': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\class_in_then.lox Tests
+[line 2] Error at 'class': Expect expression.
+Test passed:   Expected: error at 'class': expect expression.  Actual:  error at 'class': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\dangling_else.lox Tests
+good
+Test passed:   Expected: good  Actual: good
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\else.lox Tests
+good
+good
+block
+Test passed:   Expected: good  Actual: good
+Test passed:   Expected: good  Actual: good
+Test passed:   Expected: block  Actual: block
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\fun_in_else.lox Tests
+[line 2] Error at 'fun': Expect expression.
+Test passed:   Expected: error at 'fun': expect expression.  Actual:  error at 'fun': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\fun_in_then.lox Tests
+[line 2] Error at 'fun': Expect expression.
+Test passed:   Expected: error at 'fun': expect expression.  Actual:  error at 'fun': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\if.lox Tests
+good
+block
+1
+Test passed:   Expected: good  Actual: good
+Test passed:   Expected: block  Actual: block
+Test passed:   Expected: true  Actual: 1
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\truth.lox Tests
+false
+nil
+1
+0.000000
+empty
+Test passed:   Expected: false  Actual: false
+Test passed:   Expected: nil  Actual: nil
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: empty  Actual: empty
+5/5 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\var_in_else.lox Tests
+[line 2] Error at 'var': Expect expression.
+Test passed:   Expected: error at 'var': expect expression.  Actual:  error at 'var': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\if\var_in_then.lox Tests
+[line 2] Error at 'var': Expect expression.
+Test passed:   Expected: error at 'var': expect expression.  Actual:  error at 'var': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\inheritance\constructor.lox Tests
+value
+Test passed:   Expected: value  Actual: value
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\inheritance\inherit_from_function.lox Tests
+error at 'foo': Superclass must be a class.[line 3]
+Test passed:   Expected: error: superclass must be a class.  Actual: error at 'foo': superclass must be a class.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\inheritance\inherit_from_nil.lox Tests
+error at 'Nil': Superclass must be a class.[line 2]
+Test passed:   Expected: error: superclass must be a class.  Actual: error at 'nil': superclass must be a class.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\inheritance\inherit_from_number.lox Tests
+error at 'Number': Superclass must be a class.[line 2]
+Test passed:   Expected: error: superclass must be a class.  Actual: error at 'number': superclass must be a class.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\inheritance\inherit_methods.lox Tests
+foo
+bar
+bar
+Test passed:   Expected: foo  Actual: foo
+Test passed:   Expected: bar  Actual: bar
+Test passed:   Expected: bar  Actual: bar
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\inheritance\parenthesized_superclass.lox Tests
+[line 4] Error at '(': Expect superclass name.
+Test passed:   Expected: error at '(': expect superclass name.  Actual:  error at '(': expect superclass name.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\inheritance\set_fields_from_base_class.lox Tests
+foo 1
+foo 2
+bar 1
+bar 2
+bar 1
+bar 2
+Test passed:   Expected: foo 1  Actual: foo 1
+Test passed:   Expected: foo 2  Actual: foo 2
+Test passed:   Expected: bar 1  Actual: bar 1
+Test passed:   Expected: bar 2  Actual: bar 2
+Test passed:   Expected: bar 1  Actual: bar 1
+Test passed:   Expected: bar 2  Actual: bar 2
+6/6 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\logical_operator\and.lox Tests
+0
+1.000000
+0
+1
+3.000000
+1
+0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: 3  Actual: 3.000000
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+7/7 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\logical_operator\and_truth.lox Tests
+0
+nil
+ok
+ok
+ok
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: nil  Actual: nil
+Test passed:   Expected: ok  Actual: ok
+Test passed:   Expected: ok  Actual: ok
+Test passed:   Expected: ok  Actual: ok
+5/5 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\logical_operator\or.lox Tests
+1.000000
+1.000000
+1
+0
+0
+0
+1
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+7/7 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\logical_operator\or_truth.lox Tests
+ok
+ok
+1
+0.000000
+s
+Test passed:   Expected: ok  Actual: ok
+Test passed:   Expected: ok  Actual: ok
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: s  Actual: s
+5/5 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\arity.lox Tests
+no args
+1.000000
+3.000000
+6.000000
+10.000000
+15.000000
+21.000000
+28.000000
+36.000000
+Test passed:   Expected: no args  Actual: no args
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 3  Actual: 3.000000
+Test passed:   Expected: 6  Actual: 6.000000
+Test passed:   Expected: 10  Actual: 10.000000
+Test passed:   Expected: 15  Actual: 15.000000
+Test passed:   Expected: 21  Actual: 21.000000
+Test passed:   Expected: 28  Actual: 28.000000
+Test passed:   Expected: 36  Actual: 36.000000
+9/9 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\empty_block.lox Tests
+nil
+Test passed:   Expected: nil  Actual: nil
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\extra_arguments.lox Tests
+error at ')': Expected 2 arguments but got 4.[line 8]
+Test passed:   Expected: error: expected 2 arguments but got 4.  Actual: error at ')': expected 2 arguments but got 4.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\missing_arguments.lox Tests
+error at ')': Expected 2 arguments but got 1.[line 5]
+Test passed:   Expected: error: expected 2 arguments but got 1.  Actual: error at ')': expected 2 arguments but got 1.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\not_found.lox Tests
+error at 'unknown': Undefined property 'unknown'.[line 3]
+Test passed:   Expected: error: undefined property 'unknown'.  Actual: error at 'unknown': undefined property 'unknown'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\print_bound_method.lox Tests
+<fn method>
+Test passed:   Expected: <fn method>  Actual: <fn method>
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\refer_to_name.lox Tests
+error at 'method': Undefined variable 'method'.[line 3]
+Test passed:   Expected: error: undefined variable 'method'.  Actual: error at 'method': undefined variable 'method'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\too_many_arguments.lox Tests
+[line 259] Error at 'a': Can't have more than 255 arguments.
+Test passed:   Expected: error at 'a': can't have more than 255 arguments.  Actual:  error at 'a': can't have more than 255 arguments.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\method\too_many_parameters.lox Tests
+[line 258] Error at 'a': Can't have more than 255 parameters.
+Test passed:   Expected: error at 'a': can't have more than 255 parameters.  Actual:  error at 'a': can't have more than 255 parameters.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\nil\literal.lox Tests
+nil
+Test passed:   Expected: nil  Actual: nil
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\number\decimal_point_at_eof.lox Tests
+[line 2] Error at end: Expect property name after '.'.
+Test passed:   Expected: error at end: expect property name after '.'.  Actual:  error at end: expect property name after '.'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\number\leading_dot.lox Tests
+[line 2] Error at '.': Expect expression.
+Test passed:   Expected: error at '.': expect expression.  Actual:  error at '.': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\number\literals.lox Tests
+123.000000
+987654.000000
+0.000000
+-0.000000
+123.456000
+-0.001000
+Test passed:   Expected: 123  Actual: 123.000000
+Test passed:   Expected: 987654  Actual: 987654.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: -0  Actual: -0.000000
+Test passed:   Expected: 123.456  Actual: 123.456000
+Test passed:   Expected: -0.001  Actual: -0.001000
+6/6 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\number\nan_equality.lox Tests
+0
+1
+0
+1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\number\trailing_dot.lox Tests
+[line 2] Error at ';': Expect property name after '.'.
+Test passed:   Expected: error at ';': expect property name after '.'.  Actual:  error at ';': expect property name after '.'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\add.lox Tests
+579.000000
+string
+Test passed:   Expected: 579  Actual: 579.000000
+Test passed:   Expected: string  Actual: string
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\add_bool_nil.lox Tests
+error at '+': Operands must be two numbers or two strings.[line 1]
+Test passed:   Expected: error: operands must be two numbers or two strings.  Actual: error at '+': operands must be two numbers or two strings.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\add_bool_num.lox Tests
+error at '+': Operands must be two numbers or two strings.[line 1]
+Test passed:   Expected: error: operands must be two numbers or two strings.  Actual: error at '+': operands must be two numbers or two strings.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\add_bool_string.lox Tests
+error at '+': Operands must be two numbers or two strings.[line 1]
+Test passed:   Expected: error: operands must be two numbers or two strings.  Actual: error at '+': operands must be two numbers or two strings.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\add_nil_nil.lox Tests
+error at '+': Operands must be two numbers or two strings.[line 1]
+Test passed:   Expected: error: operands must be two numbers or two strings.  Actual: error at '+': operands must be two numbers or two strings.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\add_num_nil.lox Tests
+error at '+': Operands must be two numbers or two strings.[line 1]
+Test passed:   Expected: error: operands must be two numbers or two strings.  Actual: error at '+': operands must be two numbers or two strings.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\add_string_nil.lox Tests
+error at '+': Operands must be two numbers or two strings.[line 1]
+Test passed:   Expected: error: operands must be two numbers or two strings.  Actual: error at '+': operands must be two numbers or two strings.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\comparison.lox Tests
+1
+0
+0
+1
+1
+0
+0
+0
+1
+0
+1
+1
+0
+0
+0
+0
+1
+1
+1
+1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+20/20 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\divide.lox Tests
+4.000000
+1.000000
+Test passed:   Expected: 4  Actual: 4.000000
+Test passed:   Expected: 1  Actual: 1.000000
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\divide_nonnum_num.lox Tests
+error at '/': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '/': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\divide_num_nonnum.lox Tests
+error at '/': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '/': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\equals.lox Tests
+1
+1
+0
+1
+0
+1
+0
+0
+0
+0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+10/10 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\equals_class.lox Tests
+1
+0
+0
+1
+0
+0
+0
+0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+8/8 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\equals_method.lox Tests
+1
+0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\greater_nonnum_num.lox Tests
+error at '>': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '>': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\greater_num_nonnum.lox Tests
+error at '>': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '>': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\greater_or_equal_nonnum_num.lox Tests
+error at '>=': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '>=': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\greater_or_equal_num_nonnum.lox Tests
+error at '>=': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '>=': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\less_nonnum_num.lox Tests
+error at '<': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '<': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\less_num_nonnum.lox Tests
+error at '<': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '<': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\less_or_equal_nonnum_num.lox Tests
+error at '<=': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '<=': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\less_or_equal_num_nonnum.lox Tests
+error at '<=': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '<=': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\multiply.lox Tests
+15.000000
+3.702000
+Test passed:   Expected: 15  Actual: 15.000000
+Test passed:   Expected: 3.702  Actual: 3.702000
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\multiply_nonnum_num.lox Tests
+error at '*': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '*': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\multiply_num_nonnum.lox Tests
+error at '*': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '*': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\negate.lox Tests
+-3.000000
+3.000000
+-3.000000
+Test passed:   Expected: -3  Actual: -3.000000
+Test passed:   Expected: 3  Actual: 3.000000
+Test passed:   Expected: -3  Actual: -3.000000
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\negate_nonnum.lox Tests
+error at '-': Operand must be a number.[line 1]
+Test passed:   Expected: error: operand must be a number.  Actual: error at '-': operand must be a number.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\not.lox Tests
+0
+1
+1
+0
+0
+1
+0
+0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+8/8 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\not_class.lox Tests
+0
+0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\not_equals.lox Tests
+0
+0
+1
+0
+1
+0
+1
+1
+1
+1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: false  Actual: 0
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+10/10 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\subtract.lox Tests
+1.000000
+0.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 0  Actual: 0.000000
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\subtract_nonnum_num.lox Tests
+error at '-': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '-': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\operator\subtract_num_nonnum.lox Tests
+error at '-': Operands must be numbers.[line 1]
+Test passed:   Expected: error: operands must be numbers.  Actual: error at '-': operands must be numbers.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\precedence.lox Tests
+14.000000
+8.000000
+4.000000
+0.000000
+1
+1
+1
+1
+0.000000
+0.000000
+0.000000
+0.000000
+4.000000
+Test passed:   Expected: 14  Actual: 14.000000
+Test passed:   Expected: 8  Actual: 8.000000
+Test passed:   Expected: 4  Actual: 4.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: true  Actual: 1
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 4  Actual: 4.000000
+13/13 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\print\missing_argument.lox Tests
+[line 2] Error at ';': Expect expression.
+Test passed:   Expected: error at ';': expect expression.  Actual:  error at ';': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\regression\394.lox Tests
+B
+Test passed:   Expected: b  Actual: b
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\regression\40.lox Tests
+0
+Test passed:   Expected: false  Actual: 0
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\return\after_else.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\return\after_if.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\return\after_while.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\return\at_top_level.lox Tests
+error at 'return': Can't return from top-level code.[line 1]
+Test passed:   Expected: error at 'return': can't return from top-level code.  Actual: error at 'return': can't return from top-level code.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\return\in_function.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\return\in_method.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\return\return_nil_if_no_value.lox Tests
+nil
+Test passed:   Expected: nil  Actual: nil
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\string\error_after_multiline.lox Tests
+error at 'err': Undefined variable 'err'.[line 7]
+Test passed:   Expected: error: undefined variable 'err'.  Actual: error at 'err': undefined variable 'err'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\string\literals.lox Tests
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error: Unexpected character.
+[line 5] Error at '/': Expect expression.
+Cannot Parse C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\string\literals.lox:  Each print needs an '// expect: value'  | Detected:  13/2.
+No tests run!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\string\multiline.lox Tests
+1
+2
+3
+Test passed:   Expected: 1  Actual: 1
+Test passed:   Expected: 2  Actual: 2
+Test passed:   Expected: 3  Actual: 3
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\string\unterminated.lox Tests
+[line 2] Error: Unterminated string.
+Test passed:   Expected: error: unterminated string.  Actual:  error: unterminated string.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\bound_method.lox Tests
+A.method(arg)
+Test passed:   Expected: a.method(arg)  Actual: a.method(arg)
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\call_other_method.lox Tests
+Derived.bar()
+Base.foo()
+Test passed:   Expected: derived.bar()  Actual: derived.bar()
+Test passed:   Expected: base.foo()  Actual: base.foo()
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\call_same_method.lox Tests
+Derived.foo()
+Base.foo()
+Test passed:   Expected: derived.foo()  Actual: derived.foo()
+Test passed:   Expected: base.foo()  Actual: base.foo()
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\closure.lox Tests
+Base
+Test passed:   Expected: base  Actual: base
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\constructor.lox Tests
+Derived.init()
+Base.init(a, b)
+Test passed:   Expected: derived.init()  Actual: derived.init()
+Test passed:   Expected: base.init(a, b)  Actual: base.init(a, b)
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\extra_arguments.lox Tests
+Derived.foo()
+error at ')': Expected 2 arguments but got 4.[line 10]
+Test passed:   Expected: derived.foo()  Actual: derived.foo()
+Test passed:   Expected: error: expected 2 arguments but got 4.  Actual: error at ')': expected 2 arguments but got 4.
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\indirectly_inherited.lox Tests
+C.foo()
+A.foo()
+Test passed:   Expected: c.foo()  Actual: c.foo()
+Test passed:   Expected: a.foo()  Actual: a.foo()
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\missing_arguments.lox Tests
+error at ')': Expected 2 arguments but got 1.[line 9]
+Test passed:   Expected: error: expected 2 arguments but got 1.  Actual: error at ')': expected 2 arguments but got 1.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\no_superclass_bind.lox Tests
+error at 'super': Can't use 'super' in a class with no superclass.[line 3]
+Test passed:   Expected: error at 'super': can't use 'super' in a class with no superclass.  Actual: error at 'super': can't use 'super' in a class with no superclass.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\no_superclass_call.lox Tests
+error at 'super': Can't use 'super' in a class with no superclass.[line 3]
+Test passed:   Expected: error at 'super': can't use 'super' in a class with no superclass.  Actual: error at 'super': can't use 'super' in a class with no superclass.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\no_superclass_method.lox Tests
+error at 'doesNotExist': Undefined property 'doesNotExist'.[line 5]
+Test passed:   Expected: error: undefined property 'doesnotexist'.  Actual: error at 'doesnotexist': undefined property 'doesnotexist'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\parenthesized.lox Tests
+[line 8] Error at ')': Expect '.' after 'super'.
+Test passed:   Expected: error at ')': expect '.' after 'super'.  Actual:  error at ')': expect '.' after 'super'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\reassign_superclass.lox Tests
+Base.method()
+Base.method()
+Test passed:   Expected: base.method()  Actual: base.method()
+Test passed:   Expected: base.method()  Actual: base.method()
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\super_at_top_level.lox Tests
+error at 'super': Can't use 'super' outside of a class.[line 1]
+error at 'super': Can't use 'super' outside of a class.[line 2]
+Test passed:   Expected: error at 'super': can't use 'super' outside of a class.  Actual: error at 'super': can't use 'super' outside of a class.
+Test passed:   Expected: error at 'super': can't use 'super' outside of a class.  Actual: error at 'super': can't use 'super' outside of a class.
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\super_in_closure_in_inherited_method.lox Tests
+A
+Test passed:   Expected: a  Actual: a
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\super_in_inherited_method.lox Tests
+A
+Test passed:   Expected: a  Actual: a
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\super_in_top_level_function.lox Tests
+error at 'super': Can't use 'super' outside of a class.[line 1]
+Test passed:   Expected: error at 'super': can't use 'super' outside of a class.  Actual: error at 'super': can't use 'super' outside of a class.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\super_without_dot.lox Tests
+[line 6] Error at ';': Expect '.' after 'super'.
+Test passed:   Expected: error at ';': expect '.' after 'super'.  Actual:  error at ';': expect '.' after 'super'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\super_without_name.lox Tests
+[line 5] Error at ';': Expect superclass method name.
+Test passed:   Expected: error at ';': expect superclass method name.  Actual:  error at ';': expect superclass method name.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\super\this_in_superclass_method.lox Tests
+a
+b
+Test passed:   Expected: a  Actual: a
+Test passed:   Expected: b  Actual: b
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\this\closure.lox Tests
+Foo
+Test passed:   Expected: foo  Actual: foo
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\this\nested_class.lox Tests
+Outer instance
+Outer instance
+Inner instance
+Test passed:   Expected: outer instance  Actual: outer instance
+Test passed:   Expected: outer instance  Actual: outer instance
+Test passed:   Expected: inner instance  Actual: inner instance
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\this\nested_closure.lox Tests
+Foo
+Test passed:   Expected: foo  Actual: foo
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\this\this_at_top_level.lox Tests
+error at 'this': Can't use 'this' outside of a class.[line 1]
+Test passed:   Expected: error at 'this': can't use 'this' outside of a class.  Actual: error at 'this': can't use 'this' outside of a class.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\this\this_in_method.lox Tests
+baz
+Test passed:   Expected: baz  Actual: baz
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\this\this_in_top_level_function.lox Tests
+error at 'this': Can't use 'this' outside of a class.[line 2]
+Test passed:   Expected: error at 'this': can't use 'this' outside of a class.  Actual: error at 'this': can't use 'this' outside of a class.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\trevor\fib.lox Tests
+0.000000
+13.000000
+610.000000
+498454011879264.000000
+23416728348467684.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 13  Actual: 13.000000
+Test passed:   Expected: 610  Actual: 610.000000
+Test passed:   Expected: 498454011879264  Actual: 498454011879264.000000
+Test passed:   Expected: 23416728348467685  Actual: 23416728348467684.000000
+5/5 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\unexpected_character.lox Tests
+[line 3] Error: Unexpected character.
+[line 3] Error at 'b': Expect ')' after arguments.
+Test passed:   Expected: error: unexpected character.  Actual:  error: unexpected character.
+Test passed:   Expected: error at 'b': expect ')' after arguments.  Actual:  error at 'b': expect ')' after arguments.
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\collide_with_parameter.lox Tests
+error at 'a': Already a variable with this name in this scope.[line 2]
+Test passed:   Expected: error at 'a': already a variable with this name in this scope.  Actual: error at 'a': already a variable with this name in this scope.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\duplicate_local.lox Tests
+error at 'a': Already a variable with this name in this scope.[line 3]
+Test passed:   Expected: error at 'a': already a variable with this name in this scope.  Actual: error at 'a': already a variable with this name in this scope.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\duplicate_parameter.lox Tests
+error at 'arg': Already a variable with this name in this scope.[line 2]
+Test passed:   Expected: error at 'arg': already a variable with this name in this scope.  Actual: error at 'arg': already a variable with this name in this scope.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\early_bound.lox Tests
+outer
+outer
+Test passed:   Expected: outer  Actual: outer
+Test passed:   Expected: outer  Actual: outer
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\in_middle_of_block.lox Tests
+a
+a b
+a c
+a b d
+Test passed:   Expected: a  Actual: a
+Test passed:   Expected: a b  Actual: a b
+Test passed:   Expected: a c  Actual: a c
+Test passed:   Expected: a b d  Actual: a b d
+4/4 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\in_nested_block.lox Tests
+outer
+Test passed:   Expected: outer  Actual: outer
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\local_from_method.lox Tests
+variable
+Test passed:   Expected: variable  Actual: variable
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\redeclare_global.lox Tests
+nil
+Test passed:   Expected: nil  Actual: nil
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\redefine_global.lox Tests
+2
+Test passed:   Expected: 2  Actual: 2
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\scope_reuse_in_different_blocks.lox Tests
+first
+second
+Test passed:   Expected: first  Actual: first
+Test passed:   Expected: second  Actual: second
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\shadow_and_local.lox Tests
+outer
+inner
+Test passed:   Expected: outer  Actual: outer
+Test passed:   Expected: inner  Actual: inner
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\shadow_global.lox Tests
+shadow
+global
+Test passed:   Expected: shadow  Actual: shadow
+Test passed:   Expected: global  Actual: global
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\shadow_local.lox Tests
+shadow
+local
+Test passed:   Expected: shadow  Actual: shadow
+Test passed:   Expected: local  Actual: local
+2/2 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\undefined_global.lox Tests
+error at 'notDefined': Undefined variable 'notDefined'.[line 1]
+Test passed:   Expected: error: undefined variable 'notdefined'.  Actual: error at 'notdefined': undefined variable 'notdefined'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\undefined_local.lox Tests
+error at 'notDefined': Undefined variable 'notDefined'.[line 2]
+Test passed:   Expected: error: undefined variable 'notdefined'.  Actual: error at 'notdefined': undefined variable 'notdefined'.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\uninitialized.lox Tests
+nil
+Test passed:   Expected: nil  Actual: nil
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\unreached_undefined.lox Tests
+ok
+Test passed:   Expected: ok  Actual: ok
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\use_false_as_var.lox Tests
+[line 2] Error at 'false': Expect variable name.
+Test passed:   Expected: error at 'false': expect variable name.  Actual:  error at 'false': expect variable name.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\use_global_in_initializer.lox Tests
+value
+Test passed:   Expected: value  Actual: value
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\use_local_in_initializer.lox Tests
+error at 'a': Can't read local variable in its own initializer.[line 3]
+Test passed:   Expected: error at 'a': can't read local variable in its own initializer.  Actual: error at 'a': can't read local variable in its own initializer.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\use_nil_as_var.lox Tests
+[line 2] Error at 'nil': Expect variable name.
+Test passed:   Expected: error at 'nil': expect variable name.  Actual:  error at 'nil': expect variable name.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\variable\use_this_as_var.lox Tests
+[line 2] Error at 'this': Expect variable name.
+Test passed:   Expected: error at 'this': expect variable name.  Actual:  error at 'this': expect variable name.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\while\class_in_body.lox Tests
+[line 2] Error at 'class': Expect expression.
+Test passed:   Expected: error at 'class': expect expression.  Actual:  error at 'class': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\while\closure_in_body.lox Tests
+1.000000
+2.000000
+3.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+Test passed:   Expected: 3  Actual: 3.000000
+3/3 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\while\fun_in_body.lox Tests
+[line 2] Error at 'fun': Expect expression.
+Test passed:   Expected: error at 'fun': expect expression.  Actual:  error at 'fun': expect expression.
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\while\return_closure.lox Tests
+i
+Test passed:   Expected: i  Actual: i
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\while\return_inside.lox Tests
+i
+Test passed:   Expected: i  Actual: i
+1/1 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\while\syntax.lox Tests
+1.000000
+2.000000
+3.000000
+0.000000
+1.000000
+2.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+Test passed:   Expected: 3  Actual: 3.000000
+Test passed:   Expected: 0  Actual: 0.000000
+Test passed:   Expected: 1  Actual: 1.000000
+Test passed:   Expected: 2  Actual: 2.000000
+6/6 Test passed!
+----------------------------------------------------
+Running C:\Users\trevo\source\repos\tefreeman\CLox\CLox\tests\while\var_in_body.lox Tests
+[line 2] Error at 'var': Expect expression.
+Test passed:   Expected: error at 'var': expect expression.  Actual:  error at 'var': expect expression.
+1/1 Test passed!
+
+C:\Users\trevo\source\repos\tefreeman\CLox\x64\Debug\CLox.exe (process 12832) exited with code 0.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
